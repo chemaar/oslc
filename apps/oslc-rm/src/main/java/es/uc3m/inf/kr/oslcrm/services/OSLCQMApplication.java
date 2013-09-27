@@ -68,6 +68,8 @@ public class OSLCQMApplication extends OslcWinkApplication {
     		
          //   RESOURCE_CLASSES.add(ServiceProviderCatalogService.class);
             RESOURCE_CLASSES.add(ServiceProviderService.class);
+            RESOURCE_CLASSES.add(HelloWorldResource.class);
+
 
             RESOURCE_SHAPE_PATH_TO_RESOURCE_CLASS_MAP.put(OslcConstants.PATH_ALLOWED_VALUES,           AllowedValues.class);
             RESOURCE_SHAPE_PATH_TO_RESOURCE_CLASS_MAP.put(OslcConstants.PATH_COMPACT,                  Compact.class);
@@ -88,7 +90,7 @@ public class OSLCQMApplication extends OslcWinkApplication {
     	} catch (ClassNotFoundException e)
     	{
     		e.printStackTrace();
-    		System.err.println("BugzillaApplication failed to initialize");
+    		System.err.println("OSLCQMApplication failed to initialize");
     	}
 
         //RESOURCE_SHAPE_PATH_TO_RESOURCE_CLASS_MAP.put(Constants.PATH_CHANGE_REQUEST, BugzillaChangeRequest.class);

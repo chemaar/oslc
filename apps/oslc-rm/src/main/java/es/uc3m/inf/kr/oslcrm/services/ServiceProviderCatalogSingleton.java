@@ -34,8 +34,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.Response.Status;
 
-
 import org.eclipse.lyo.oslc4j.client.ServiceProviderRegistryURIs;
+import org.eclipse.lyo.oslc4j.core.exception.OslcCoreApplicationException;
 import org.eclipse.lyo.oslc4j.core.model.Publisher;
 import org.eclipse.lyo.oslc4j.core.model.Service;
 import org.eclipse.lyo.oslc4j.core.model.ServiceProvider;
@@ -250,6 +250,18 @@ public class ServiceProviderCatalogSingleton
      * @param httpServletRequest
      */
     protected static void initServiceProvidersFromProducts (HttpServletRequest httpServletRequest) {
+    	try {
+			registerServiceProvider(httpServletRequest,
+					OSLCQMServiceProviderFactory.createServiceProvider("http://base.uri/", "a", new HashMap<String, Object>()),
+					"MYPRODUCT");
+		} catch (URISyntaxException e) {
+			e.printStackTrace();
+			throw new WebApplicationException(e,Status.INTERNAL_SERVER_ERROR);
+		} catch (OslcCoreApplicationException e) {
+			e.printStackTrace();
+			throw new WebApplicationException(e,Status.INTERNAL_SERVER_ERROR);
+		}
+    }
 //    {
 //    	
 //		try {
@@ -266,7 +278,7 @@ public class ServiceProviderCatalogSingleton
 //				for (Integer p : productIds) {
 //					String productId = Integer.toString(p);
 //		        	
-//					if (! serviceProviders.containsKey(productId)) {
+//					if (! getServiceProviders.containsKey(productId)) {
 //		        		        
 //						GetProduct getProductMethod = new GetProduct(p);
 //						bc.executeMethod(getProductMethod);
@@ -287,5 +299,5 @@ public class ServiceProviderCatalogSingleton
 //			e.printStackTrace();
 //			throw new WebApplicationException(e,Status.INTERNAL_SERVER_ERROR);
 //		}
-    }
+    
 }

@@ -1,8 +1,8 @@
 <html>
 <head>
-	<title>OSLC-QM Prototype</title>
+	<title>OSLC-RM Prototype</title>
 </head>
 <body>
-<h2>OSLC-QM Prototype</h2>
+<h2>OSLC-RM Prototype</h2>
 </body>
 </html>
