@@ -49,9 +49,11 @@ public class IntegrationDummyServiceProviderServiceTest {
 	@HttpTest( method = Method.GET, path = "/dummyServiceProviders" ) 
 	public void checkContentNegotiation2() {		
 		restfuse.getRequestContext().addHeader( "Accept",  OslcMediaType.APPLICATION_XML );
+		System.out.println(response.getBody());
 		Assert.assertEquals( OslcMediaType.APPLICATION_XML,
 				response.getHeaders().get("Content-Type").get(0)
 				);
+		
 	}
 	
 	

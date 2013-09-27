@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2012 IBM Corporation.
+ * Copyright (c) 2013 Carlos III University.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -10,12 +10,6 @@
  * http://www.eclipse.org/org/documents/edl-v10.php.
  *
  * Contributors:
- *
- *     Russell Boykin       - initial API and implementation
- *     Alberto Giammaria    - initial API and implementation
- *     Chris Peters         - initial API and implementation
- *     Gianluca Bernardini  - initial API and implementation
- *     Michael Fiedler      - implementation for Bugzilla adapter
  *******************************************************************************/
 package es.uc3m.inf.kr.oslcrm.services;
 
@@ -76,8 +70,7 @@ public class ServiceProviderService{
 	@Produces({OslcMediaType.APPLICATION_RDF_XML, OslcMediaType.APPLICATION_XML, OslcMediaType.APPLICATION_JSON})
 	public ServiceProvider[] getServiceProviders(){
 		httpServletResponse.addHeader("Oslc-Core-Version","2.0");
-		return new ServiceProvider[0];
-		//return ServiceProviderCatalogSingleton.getServiceProviders(httpServletRequest);
+		return ServiceProviderCatalogSingleton.getServiceProviders(httpServletRequest);
 	}
 
 	/**

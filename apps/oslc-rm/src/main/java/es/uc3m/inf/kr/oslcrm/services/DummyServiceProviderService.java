@@ -47,7 +47,6 @@ public class DummyServiceProviderService {
 	@Produces({OslcMediaType.APPLICATION_RDF_XML, OslcMediaType.APPLICATION_XML, OslcMediaType.APPLICATION_JSON})
 	public ServiceProvider[] getServiceProviders(){
 		httpServletResponse.addHeader("Oslc-Core-Version","2.0");
-		return new ServiceProvider[0];
-		//return ServiceProviderCatalogSingleton.getServiceProviders(httpServletRequest);
+		return  ServiceProviderCatalogSingleton.getServiceProviders(httpServletRequest);
 	}
 }

@@ -1,22 +1,3 @@
-/*******************************************************************************
- * Copyright (c) 2012 IBM Corporation.
- *
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * and Eclipse Distribution License v. 1.0 which accompanies this distribution.
- *  
- * The Eclipse Public License is available at http://www.eclipse.org/legal/epl-v10.html
- * and the Eclipse Distribution License is available at
- * http://www.eclipse.org/org/documents/edl-v10.php.
- *
- * Contributors:
- *
- *     Russell Boykin       - initial API and implementation
- *     Alberto Giammaria    - initial API and implementation
- *     Chris Peters         - initial API and implementation
- *     Gianluca Bernardini  - initial API and implementation
- *     Michael Fiedler      - Bugzilla adapter implementation
- *******************************************************************************/
 package es.uc3m.inf.kr.oslcrm.services;
 
 import java.net.URI;
@@ -33,35 +14,32 @@ import org.eclipse.lyo.oslc4j.core.model.ServiceProviderFactory;
 
 import es.uc3m.inf.kr.oslcrm.Constants;
 
-public class OSLCQMServiceProviderFactory
-{
-    private static Class<?>[] RESOURCE_CLASSES =
-    {
-        HelloWorldResource.class
+public class OSLCQMServiceProviderFactory{
+    private static Class<?>[] RESOURCE_CLASSES =  {
+        //ServiceProviderService.class,
+        DummyServiceProviderService.class
     };
 
-    private OSLCQMServiceProviderFactory()
-    {
+    private OSLCQMServiceProviderFactory()   {
         super();
     }
 
     /**
-     * Create a new Bugzilla OSLC change management service provider.
+     * Create a new KR OSLC requirements management service provider.
      * @param baseURI
-     * @param product
+     * @param product - This is if the service provides more than a product
      * @param parameterValueMap - a map containing the path replacement value for {productId}.  See ServiceProviderCatalogSingleton.initServiceProvidersFromProducts()
      * @return
      * @throws OslcCoreApplicationException
      * @throws URISyntaxException
      */
     public static ServiceProvider createServiceProvider(final String baseURI, final String product, final Map<String,Object> parameterValueMap)
-           throws OslcCoreApplicationException, URISyntaxException
-    {
+           throws OslcCoreApplicationException, URISyntaxException   {
         final ServiceProvider serviceProvider = ServiceProviderFactory.createServiceProvider(baseURI,
                                                                                              ServiceProviderRegistryURIs.getUIURI(),
                                                                                              product,
-                                                                                             "Service provider for Bugzilla product: "+product,
-                                                                                             new Publisher("Eclipse Lyo", "urn:oslc:ServiceProvider"),
+                                                                                             "Service provider for KM UC3M: "+product,
+                                                                                             new Publisher("KM UC3M via Eclipse Lyo", "urn:oslc:ServiceProvider"),
                                                                                              RESOURCE_CLASSES,
                                                                                              parameterValueMap);
         URI detailsURIs[] = {new URI(baseURI + "/details")};
@@ -73,7 +51,7 @@ public class OSLCQMServiceProviderFactory
             new PrefixDefinition(OslcConstants.OSLC_CORE_NAMESPACE_PREFIX,           new URI(OslcConstants.OSLC_CORE_NAMESPACE)),
             new PrefixDefinition(OslcConstants.OSLC_DATA_NAMESPACE_PREFIX,           new URI(OslcConstants.OSLC_DATA_NAMESPACE)),
             new PrefixDefinition(OslcConstants.RDF_NAMESPACE_PREFIX,                 new URI(OslcConstants.RDF_NAMESPACE)),
-            new PrefixDefinition(OslcConstants.RDFS_NAMESPACE_PREFIX,                new URI(OslcConstants.RDFS_NAMESPACE)),                        
+            new PrefixDefinition(OslcConstants.RDFS_NAMESPACE_PREFIX,                new URI(OslcConstants.RDFS_NAMESPACE)),
             new PrefixDefinition(Constants.REQUIREMENTS_MANAGEMENT_PREFIX,           new URI(Constants.REQUIREMENTS_MANAGEMENT_NAMESPACE)),
             new PrefixDefinition(Constants.SOFTWARE_CONFIGURATION_MANAGEMENT_PREFIX, new URI(Constants.SOFTWARE_CONFIGURATION_MANAGEMENT_NAMESPACE))
         };
