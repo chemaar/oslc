@@ -1,4 +1,4 @@
-oslc
+OSLC-Open Services for Lifecycle Collaboration
 ====
 
-Draft of implementations of the OSLC specification
+Draft implementations of the OSLC specifications
