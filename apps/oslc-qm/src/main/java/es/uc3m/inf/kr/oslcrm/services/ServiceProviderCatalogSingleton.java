@@ -17,7 +17,7 @@
  *     Gianluca Bernardini  - initial API and implementation
  *     Michael Fiedler      - adapted for Bugzilla service provider
  *******************************************************************************/
-package es.uc3m.inf.kr.oslcqm.services;
+package es.uc3m.inf.kr.oslcrm.services;
 
 
 import java.net.URI;

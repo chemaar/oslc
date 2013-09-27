@@ -17,7 +17,7 @@
  *     Gianluca Bernardini  - initial API and implementation
  *     Michael Fiedler      - implementation for Bugzilla adapter
  *******************************************************************************/
-package es.uc3m.inf.kr.oslcqm.services;
+package es.uc3m.inf.kr.oslcrm.services;
 
 
 

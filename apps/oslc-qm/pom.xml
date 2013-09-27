@@ -88,7 +88,7 @@
 	</dependencies>
 
 	<build>
-		<finalName>oslc-qm-sample</finalName>
+		<finalName>oslc-qm</finalName>
 		<plugins>
 
 			<!-- Jetty 7 plugin See also: http://wiki.eclipse.org/Jetty/Feature/Jetty_Maven_Plugin -->
@@ -99,7 +99,7 @@
 
 				<configuration>
 					<webAppConfig>
-						<contextPath>/OSLC4JBugzilla</contextPath>
+						<contextPath>/oslc-qm</contextPath>
 					</webAppConfig>
 
 					<!-- Jetty config adds logging -->
