@@ -69,6 +69,8 @@ public class OSLCQMApplication extends OslcWinkApplication {
          //   RESOURCE_CLASSES.add(ServiceProviderCatalogService.class);
             RESOURCE_CLASSES.add(ServiceProviderService.class);
             RESOURCE_CLASSES.add(HelloWorldResource.class);
+            RESOURCE_CLASSES.add(DummyServiceProviderService.class);
+            
 
 
             RESOURCE_SHAPE_PATH_TO_RESOURCE_CLASS_MAP.put(OslcConstants.PATH_ALLOWED_VALUES,           AllowedValues.class);
