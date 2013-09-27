@@ -1,10 +1,10 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>es.uc3m.inf.kr</groupId>
-  <artifactId>oslc-qm</artifactId>
-  <packaging>war</packaging>
-  <version>0.0.1-SNAPSHOT</version>
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>es.uc3m.inf.kr</groupId>
+	<artifactId>oslc-qm</artifactId>
+	<packaging>war</packaging>
+	<version>0.0.1-SNAPSHOT</version>
 
 	<dependencies>
 		<dependency>
@@ -39,12 +39,6 @@
 			<artifactId>oslc4j-jena-provider</artifactId>
 			<version>2.1.0-SNAPSHOT</version>
 		</dependency>
-		<dependency>
-			<groupId>com.j2bugzilla</groupId>
-			<artifactId>j2bugzilla</artifactId>
-			<version>2.0</version>
-		</dependency>
-
 
 		<dependency>
 			<groupId>org.eclipse.lyo.server</groupId>
@@ -92,52 +86,52 @@
 			<version>[1.1,)</version>
 		</dependency>
 	</dependencies>
-  
-  <build>
-    <finalName>oslc4j-bugzilla-sample</finalName>
-      	<plugins>
 
-		<!-- Jetty 7 plugin See also: http://wiki.eclipse.org/Jetty/Feature/Jetty_Maven_Plugin -->
-		<plugin>
-			<groupId>org.mortbay.jetty</groupId>
-			<artifactId>jetty-maven-plugin</artifactId>
-			<!--  <version>7.3.0.v20110203</version> -->
+	<build>
+		<finalName>oslc-qm-sample</finalName>
+		<plugins>
 
-			<configuration>
-			    <webAppConfig>
-			      <contextPath>/OSLC4JBugzilla</contextPath>
-			    </webAppConfig>
+			<!-- Jetty 7 plugin See also: http://wiki.eclipse.org/Jetty/Feature/Jetty_Maven_Plugin -->
+			<plugin>
+				<groupId>org.mortbay.jetty</groupId>
+				<artifactId>jetty-maven-plugin</artifactId>
+				<!-- <version>7.3.0.v20110203</version> -->
 
-				<!-- Jetty config adds logging -->
-				<jettyConfig>${project.build.directory}/classes/jetty.xml</jettyConfig>
+				<configuration>
+					<webAppConfig>
+						<contextPath>/OSLC4JBugzilla</contextPath>
+					</webAppConfig>
 
-				<!-- enable hot deploy -->
-				<reload>automatic</reload>
-				<scanIntervalSeconds>5</scanIntervalSeconds>
-				<scanTargets>
-					<scanTarget>WebContent</scanTarget>
-				</scanTargets>
-					
-    			<systemProperties>
+					<!-- Jetty config adds logging -->
+					<jettyConfig>${project.build.directory}/classes/jetty.xml</jettyConfig>
 
-					<systemProperty>
-						<name>config.dir</name>
-						<value>${basedir}/src/test/resources</value>
-					</systemProperty>
+					<!-- enable hot deploy -->
+					<reload>automatic</reload>
+					<scanIntervalSeconds>5</scanIntervalSeconds>
+					<scanTargets>
+						<scanTarget>WebContent</scanTarget>
+					</scanTargets>
 
-					<systemProperty>
-						<name>jetty.logs</name>
-						<value>${basedir}/target</value>
-					</systemProperty>
-					<systemProperty>
-						<name>jetty.port</name>
-						<value>8080</value>
-					</systemProperty>
-				</systemProperties>
-					
-			</configuration>
+					<systemProperties>
 
-		</plugin>
-  	</plugins>
-  </build>
+						<systemProperty>
+							<name>config.dir</name>
+							<value>${basedir}/src/test/resources</value>
+						</systemProperty>
+
+						<systemProperty>
+							<name>jetty.logs</name>
+							<value>${basedir}/target</value>
+						</systemProperty>
+						<systemProperty>
+							<name>jetty.port</name>
+							<value>8080</value>
+						</systemProperty>
+					</systemProperties>
+
+				</configuration>
+
+			</plugin>
+		</plugins>
+	</build>
 </project>
