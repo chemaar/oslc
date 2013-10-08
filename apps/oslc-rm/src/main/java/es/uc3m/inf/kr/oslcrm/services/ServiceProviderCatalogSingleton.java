@@ -210,7 +210,7 @@ public class ServiceProviderCatalogSingleton
     	try {
 			registerServiceProvider(
 					httpServletRequest,
-					OSLCQMServiceProviderFactory.createServiceProvider("http://kr.inf.uc3m.es",KM_UC3M_ID,new HashMap<String, Object>()));
+					OSLCRMServiceProviderFactory.createServiceProvider("http://kr.inf.uc3m.es",KM_UC3M_ID,new HashMap<String, Object>()));
 		} catch (URISyntaxException e) {
 			e.printStackTrace();
 			throw new WebApplicationException(e,Status.INTERNAL_SERVER_ERROR);

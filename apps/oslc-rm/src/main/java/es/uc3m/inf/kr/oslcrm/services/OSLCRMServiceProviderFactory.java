@@ -18,7 +18,8 @@ public class OSLCRMServiceProviderFactory{
     private static Class<?>[] RESOURCE_CLASSES =  {
         //ServiceProviderService.class,
         DummyServiceProviderService.class,
-        ServiceProviderCatalogService.class
+        ServiceProviderCatalogService.class,
+        KRRequirementsManagementService.class
     };
 
     private OSLCRMServiceProviderFactory()   {
