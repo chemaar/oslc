@@ -4,12 +4,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.Context;
+import javax.ws.rs.core.Response.Status;
 
 import org.eclipse.lyo.oslc4j.core.annotation.OslcDialog;
 import org.eclipse.lyo.oslc4j.core.annotation.OslcQueryCapability;
 import org.eclipse.lyo.oslc4j.core.annotation.OslcService;
+import org.eclipse.lyo.oslc4j.core.model.Compact;
 import org.eclipse.lyo.oslc4j.core.model.OslcConstants;
 import org.eclipse.lyo.oslc4j.core.model.OslcMediaType;
 import org.eclipse.lyo.oslc4j.core.model.ServiceProvider;
@@ -49,4 +53,51 @@ public class DummyServiceProviderService {
 		httpServletResponse.addHeader("Oslc-Core-Version","2.0");
 		return  ServiceProviderCatalogSingleton.getServiceProviders(httpServletRequest);
 	}
+	
+	 /**
+     * RDF/XML, XML and JSON representations of a single OSLC Service Provider
+     * 
+     * @param serviceProviderId
+     * @return
+     */
+    @GET
+    @Path("{serviceProviderId}")
+    @Produces({OslcMediaType.APPLICATION_RDF_XML, OslcMediaType.APPLICATION_XML, OslcMediaType.APPLICATION_JSON})
+    public ServiceProvider getServiceProvider(@PathParam("serviceProviderId") final String serviceProviderId){
+    	System.out.println("RECEIVED REQUEST: "+serviceProviderId);
+    	httpServletResponse.addHeader("Oslc-Core-Version","2.0");
+        return ServiceProviderCatalogSingleton.getServiceProvider(httpServletRequest, serviceProviderId);
+    }
+    
+    /**
+     * OSLC compact XML representation of a single OSLC Service Provider
+     * 
+     * @param serviceProviderId
+     * @return
+     */
+    @GET
+    @Path("{serviceProviderId}")
+    @Produces({OslcMediaType.APPLICATION_X_OSLC_COMPACT_XML, OslcMediaType.APPLICATION_X_OSLC_COMPACT_JSON})
+    public Compact getCompact(@PathParam("serviceProviderId") final String serviceProviderId)    {
+        final ServiceProvider serviceProvider = ServiceProviderCatalogSingleton.getServiceProvider(httpServletRequest, serviceProviderId);
+
+        if (serviceProvider != null) {
+        	
+        	final Compact compact = new Compact();
+
+        	compact.setAbout(serviceProvider.getAbout());
+        	compact.setShortTitle(serviceProvider.getTitle());
+        	compact.setTitle(serviceProvider.getTitle());
+
+        	// TODO - Need icon for ServiceProvider compact.
+
+        	httpServletResponse.addHeader("Oslc-Core-Version","2.0");
+        	return compact;
+        }
+        
+        throw new WebApplicationException(Status.NOT_FOUND);
+    }
+    
+    
+
 }
