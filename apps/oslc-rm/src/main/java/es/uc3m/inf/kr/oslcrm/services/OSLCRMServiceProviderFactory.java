@@ -13,6 +13,7 @@ import org.eclipse.lyo.oslc4j.core.model.ServiceProvider;
 import org.eclipse.lyo.oslc4j.core.model.ServiceProviderFactory;
 
 import es.uc3m.inf.kr.oslcrm.Constants;
+import es.uc3m.inf.kr.oslcrm.SKOS;
 
 public class OSLCRMServiceProviderFactory{
     private static Class<?>[] RESOURCE_CLASSES =  {
@@ -47,15 +48,17 @@ public class OSLCRMServiceProviderFactory{
         URI detailsURIs[] = {new URI(baseURI + "/details")};
         serviceProvider.setDetails(detailsURIs);
 
-        final PrefixDefinition[] prefixDefinitions =
-        {
+        final PrefixDefinition[] prefixDefinitions = {
             new PrefixDefinition(OslcConstants.DCTERMS_NAMESPACE_PREFIX,             new URI(OslcConstants.DCTERMS_NAMESPACE)),
             new PrefixDefinition(OslcConstants.OSLC_CORE_NAMESPACE_PREFIX,           new URI(OslcConstants.OSLC_CORE_NAMESPACE)),
             new PrefixDefinition(OslcConstants.OSLC_DATA_NAMESPACE_PREFIX,           new URI(OslcConstants.OSLC_DATA_NAMESPACE)),
             new PrefixDefinition(OslcConstants.RDF_NAMESPACE_PREFIX,                 new URI(OslcConstants.RDF_NAMESPACE)),
             new PrefixDefinition(OslcConstants.RDFS_NAMESPACE_PREFIX,                new URI(OslcConstants.RDFS_NAMESPACE)),
             new PrefixDefinition(Constants.REQUIREMENTS_MANAGEMENT_PREFIX,           new URI(Constants.REQUIREMENTS_MANAGEMENT_NAMESPACE)),
-            new PrefixDefinition(Constants.SOFTWARE_CONFIGURATION_MANAGEMENT_PREFIX, new URI(Constants.SOFTWARE_CONFIGURATION_MANAGEMENT_NAMESPACE))
+            new PrefixDefinition(Constants.SOFTWARE_CONFIGURATION_MANAGEMENT_PREFIX, new URI(Constants.SOFTWARE_CONFIGURATION_MANAGEMENT_NAMESPACE)),
+            //Adding new ones FIXME: read from properties
+            new PrefixDefinition("skos", new URI(SKOS.CORE_NAMESPACE)),
+            new PrefixDefinition("foaf", new URI(Constants.FOAF_NAMESPACE))
         };
 
         serviceProvider.setPrefixDefinitions(prefixDefinitions);
