@@ -76,7 +76,7 @@ public class KRRequirementsManagementService {
 		// req.setDefinition("My cool definition");
 		 try {
 			req.setAbout(new URI("http://uri.req"));	
-			
+			req.setDefinition("My definition");
 		} catch (URISyntaxException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
