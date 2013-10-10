@@ -1,6 +1,8 @@
 package es.uc3m.inf.kr.oslcrm.services;
 
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -38,8 +40,8 @@ public class KRRequirementsManagementService {
 	@Context private UriInfo uriInfo;
 	
 	public KRRequirementsManagementService(){
-        super();
-    }
+		super();
+	}
 
 	 @OslcDialogs(
 			    {
@@ -64,37 +66,22 @@ public class KRRequirementsManagementService {
 			        resourceTypes = {Constants.TYPE_CHANGE_REQUEST},
 			        usages = {OslcConstants.OSLC_USAGE_DEFAULT}
 			    )
-	 /**
-	     * RDF/XML, XML and JSON representation of a change request collection
-	     * 
-	     * TODO:  add query support
-	     * 
-	     * @param productId
-	     * @param where
-	     * @param select
-	     * @param prefix
-	     * @param pageString
-	     * @param orderBy
-	     * @param searchTerms
-	     * @param paging
-	     * @param pageSize
-	     * @return
-	     * @throws IOException
-	     * @throws ServletException
-	     */
+	 
 	    @GET
 	    @Produces({OslcMediaType.APPLICATION_RDF_XML, OslcMediaType.APPLICATION_XML, OslcMediaType.APPLICATION_JSON})
-	    public List<RequirementTO> getChangeRequests(@PathParam("productId")         final String productId,
-	    		                                 	     	 @QueryParam("oslc.where")       final String where,
-	    		                                 		     @QueryParam("oslc.select")      final String select,
-	    		                                 		     @QueryParam("oslc.prefix")      final String prefix,
-	    		                                             @QueryParam("page")             final String pageString,
-	    		                                             @QueryParam("oslc.orderBy")     final String orderBy,
-	    		                                             @QueryParam("oslc.searchTerms") final String searchTerms,
-	    		                                             @QueryParam("oslc.paging")      final String paging,
-	    		                                             @QueryParam("oslc.pageSize")    final String pageSize) throws IOException, ServletException {
+	    public List<RequirementTO> getChangeRequests() throws IOException, ServletException {
 	    
 		 List<RequirementTO> requirements = new LinkedList<RequirementTO>();
+		 RequirementTO req = new RequirementTO();
+		// req.setDefinition("My cool definition");
+		 try {
+			req.setAbout(new URI("http://uri.req"));	
+			
+		} catch (URISyntaxException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		 requirements.add(req);
 		 return requirements;
 	 }
 	    
