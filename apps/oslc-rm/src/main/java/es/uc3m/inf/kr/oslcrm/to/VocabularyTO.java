@@ -21,7 +21,7 @@ import es.uc3m.inf.kr.oslcrm.Constants;
 @OslcNamespace(Constants.REQUIREMENTS_MANAGEMENT_NAMESPACE)
 @OslcName("RequirementManagement") 
 @OslcResourceShape(title = "Requirement management Resource Shape", describes = Constants.TYPE_CHANGE_REQUEST)
-public class RequirementTO extends ManagedRequirementTO {
+public class VocabularyTO extends ManagedVocabularyTO {
 	private String definition = null;	
 	
 	@OslcDescription("The Requirement definition.")

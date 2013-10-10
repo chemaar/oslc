@@ -28,18 +28,19 @@ import org.eclipse.lyo.oslc4j.core.model.OslcConstants;
 import org.eclipse.lyo.oslc4j.core.model.OslcMediaType;
 
 import es.uc3m.inf.kr.oslcrm.Constants;
-import es.uc3m.inf.kr.oslcrm.to.RequirementTO;
+import es.uc3m.inf.kr.oslcrm.to.Person;
+import es.uc3m.inf.kr.oslcrm.to.VocabularyTO;
 
 @OslcService(Constants.REQUIREMENTS_MANAGEMENT_DOMAIN)
 @Path("requirementManagement")
 //@Path("{productId}/requirementManagement")
-public class KRRequirementsManagementService {
+public class KRVocabularyManagementService {
 
 	@Context private HttpServletRequest httpServletRequest;
 	@Context private HttpServletResponse httpServletResponse;
 	@Context private UriInfo uriInfo;
 	
-	public KRRequirementsManagementService(){
+	public KRVocabularyManagementService(){
 		super();
 	}
 
@@ -69,14 +70,19 @@ public class KRRequirementsManagementService {
 	 
 	    @GET
 	    @Produces({OslcMediaType.APPLICATION_RDF_XML, OslcMediaType.APPLICATION_XML, OslcMediaType.APPLICATION_JSON})
-	    public List<RequirementTO> getChangeRequests() throws IOException, ServletException {
+	    public List<VocabularyTO> getChangeRequests() throws IOException, ServletException {
 	    
-		 List<RequirementTO> requirements = new LinkedList<RequirementTO>();
-		 RequirementTO req = new RequirementTO();
+		 List<VocabularyTO> requirements = new LinkedList<VocabularyTO>();
+		 VocabularyTO req = new VocabularyTO();
 		// req.setDefinition("My cool definition");
 		 try {
 			req.setAbout(new URI("http://uri.req"));	
 			req.setDefinition("My definition");
+			Person contributor = new Person();
+			contributor.setName("Jose");
+			contributor.setMbox("mailto:josemaria.alvarez@uc3m.es");
+			contributor.setUri(new URI("http://josemalvarez.es/foaf.rdf#me"));
+			req.addContributor(contributor );
 		} catch (URISyntaxException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

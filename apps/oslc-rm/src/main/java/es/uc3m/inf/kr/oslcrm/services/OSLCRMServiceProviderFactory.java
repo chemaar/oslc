@@ -19,7 +19,7 @@ public class OSLCRMServiceProviderFactory{
         //ServiceProviderService.class,
         DummyServiceProviderService.class,
         ServiceProviderCatalogService.class,
-        KRRequirementsManagementService.class
+        KRVocabularyManagementService.class
     };
 
     private OSLCRMServiceProviderFactory()   {
