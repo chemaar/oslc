@@ -80,16 +80,10 @@ public class KRVocabularyManagementService {
 			)
 
 	@GET
+	@Path("cpv")
 	@Produces({OslcMediaType.APPLICATION_RDF_XML, OslcMediaType.APPLICATION_XML, OslcMediaType.APPLICATION_JSON})
-	public List<VocabularyTO> getVocabularyConcepts() throws IOException, ServletException {
+	public List<VocabularyTO> getCPVConcepts() throws IOException, ServletException {
 		try {
-//			List<VocabularyTO> elements = new LinkedList<VocabularyTO>();
-//			
-//			for(int i = 0; i<1;i++){
-//				elements.add(createElement(i));
-//			}
-//
-//			return elements;
 			return dao.getTerms();
 		} catch (URISyntaxException e) {
 			 throw new WebApplicationException(Response.Status.INTERNAL_SERVER_ERROR);
@@ -97,7 +91,34 @@ public class KRVocabularyManagementService {
 
 
 	}
+	
+	@GET
+	@Produces({OslcMediaType.APPLICATION_RDF_XML, OslcMediaType.APPLICATION_XML, OslcMediaType.APPLICATION_JSON})
+	public List<VocabularyTO> getVocabularyConcepts() throws IOException, ServletException {
+		try {
+			List<VocabularyTO> elements = new LinkedList<VocabularyTO>();
+			
+			for(int i = 0; i<10;i++){
+				elements.add(createElement(i));
+			}
 
+			return elements;
+		} catch (URISyntaxException e) {
+			 throw new WebApplicationException(Response.Status.INTERNAL_SERVER_ERROR);
+		}
+
+
+	}
+	
+
+	@GET
+	@Path("cpv/{conceptID}")
+	@Produces({OslcMediaType.APPLICATION_RDF_XML, OslcMediaType.APPLICATION_XML, OslcMediaType.APPLICATION_JSON})
+	public VocabularyTO getVocabularyConcepts(@PathParam("conceptID") final String conceptId) throws IOException, ServletException {
+		System.out.println("TRYING TO GET "+conceptId);
+		 return dao.getVocabularyElement(conceptId);
+	}
+	
 
 //	 /**
 //     * RDF/XML, XML and JSON representation of a change request collection

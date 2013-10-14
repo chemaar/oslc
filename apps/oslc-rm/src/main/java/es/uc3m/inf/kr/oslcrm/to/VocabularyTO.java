@@ -19,8 +19,8 @@ import org.eclipse.lyo.oslc4j.core.model.ValueType;
 import es.uc3m.inf.kr.oslcrm.Constants;
 
 @OslcNamespace(Constants.REQUIREMENTS_MANAGEMENT_NAMESPACE)
-@OslcName("RequirementManagement") 
-@OslcResourceShape(title = "Requirement management Resource Shape", describes = Constants.TYPE_CHANGE_REQUEST)
+@OslcName("VocabularyElement") 
+@OslcResourceShape(title = "Vocabulary management Resource Shape", describes = Constants.TYPE_CHANGE_REQUEST)
 public class VocabularyTO extends ManagedVocabularyTO {
 	private String definition = null;	
 	
