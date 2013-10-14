@@ -19,7 +19,8 @@ public interface Constants{
     public static String BUGZILLA_NAMESPACE							 = "http://www.bugzilla.org/rdf#";
     public static String BUGZILLA_NAMESPACE_PREFIX					 = "bugz";
     
-
+    public static String TRC_NAMESPACE					 = "http://thereusecompany.com/ontology/";
+    
 
     public static String CHANGE_REQUEST             = "RequirementManagement";
     public static String TYPE_CHANGE_REQUEST        = REQUIREMENTS_MANAGEMENT_NAMESPACE + CHANGE_REQUEST;
