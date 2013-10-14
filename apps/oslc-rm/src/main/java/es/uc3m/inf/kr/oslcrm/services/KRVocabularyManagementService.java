@@ -33,6 +33,8 @@ import org.eclipse.lyo.oslc4j.core.annotation.OslcService;
 import org.eclipse.lyo.oslc4j.core.model.OslcConstants;
 import org.eclipse.lyo.oslc4j.core.model.OslcMediaType;
 
+import es.uc3m.inf.kr.common.utils.ApplicationContextLocator;
+import es.uc3m.inf.kr.dao.VocabularyDAO;
 import es.uc3m.inf.kr.oslcrm.Constants;
 import es.uc3m.inf.kr.oslcrm.to.Person;
 import es.uc3m.inf.kr.oslcrm.to.VocabularyTO;
@@ -45,19 +47,22 @@ public class KRVocabularyManagementService {
 	@Context private HttpServletRequest httpServletRequest;
 	@Context private HttpServletResponse httpServletResponse;
 	@Context private UriInfo uriInfo;
+	VocabularyDAO dao;
 
 	public KRVocabularyManagementService(){
 		super();
+		dao = (VocabularyDAO) ApplicationContextLocator.
+				getApplicationContext().getBean(VocabularyDAO.class.getSimpleName());
 	}
 
 	@OslcDialogs(
 			{
 				@OslcDialog
 				(
-						title = "Requirements Management Selection Dialog",
-						label = "Requirements Management Selection Dialog",
+						title = "Vocabulary Management Selection Dialog",
+						label = "Vocabulary Management Selection Dialog",
 						//uri = "/{productId}/requirementManagement/selector",
-						uri = "/requirementManagement/selector",
+						uri = "/vocabularyManagement/selector",
 						hintWidth = "525px",
 						hintHeight = "325px",
 						resourceTypes = {Constants.TYPE_CHANGE_REQUEST},
@@ -67,9 +72,9 @@ public class KRVocabularyManagementService {
 			})
 	@OslcQueryCapability
 	(
-			title = "Requirements Management Query Capability",
-			label = "Requirements Management Catalog Query",
-			resourceShape = OslcConstants.PATH_RESOURCE_SHAPES + "/" + Constants.PATH_CHANGE_REQUEST,
+			title = "Vocabulary Management Query Capability",
+			label = "Vocabulary Management Catalog Query",
+			resourceShape = OslcConstants.PATH_RESOURCE_SHAPES + "/" + Constants.PATH_VOCABULARY_REQUEST,
 			resourceTypes = {Constants.TYPE_CHANGE_REQUEST},
 			usages = {OslcConstants.OSLC_USAGE_DEFAULT}
 			)
@@ -77,149 +82,148 @@ public class KRVocabularyManagementService {
 	@GET
 	@Produces({OslcMediaType.APPLICATION_RDF_XML, OslcMediaType.APPLICATION_XML, OslcMediaType.APPLICATION_JSON})
 	public List<VocabularyTO> getVocabularyConcepts() throws IOException, ServletException {
-
-		List<VocabularyTO> vocabulary = new LinkedList<VocabularyTO>();
-
-		// req.setDefinition("My cool definition");
 		try {
-			for(int i = 0; i<1;i++){
-				vocabulary.add(createElement(i));
-			}
-
+//			List<VocabularyTO> elements = new LinkedList<VocabularyTO>();
+//			
+//			for(int i = 0; i<1;i++){
+//				elements.add(createElement(i));
+//			}
+//
+//			return elements;
+			return dao.getTerms();
 		} catch (URISyntaxException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			 throw new WebApplicationException(Response.Status.INTERNAL_SERVER_ERROR);
 		}
 
-		return vocabulary;
+
 	}
 
 
-	 /**
-     * RDF/XML, XML and JSON representation of a change request collection
-     * 
-     * TODO:  add query support
-     * 
-     * @param conceptId
-     * @param where
-     * @param select
-     * @param prefix
-     * @param pageString
-     * @param orderBy
-     * @param searchTerms
-     * @param paging
-     * @param pageSize
-     * @return
-     * @throws IOException
-     * @throws ServletException
-     */
-    @GET
-    @Produces({OslcMediaType.APPLICATION_RDF_XML, OslcMediaType.APPLICATION_XML, OslcMediaType.APPLICATION_JSON})
-    public List<VocabularyTO> getVocabularyElement       (@PathParam("conceptID")         final String conceptId,
-    		                                 	     	 @QueryParam("oslc.where")       final String where,
-    		                                 		     @QueryParam("oslc.select")      final String select,
-    		                                 		     @QueryParam("oslc.prefix")      final String prefix,
-    		                                             @QueryParam("page")             final String pageString,
-    		                                             @QueryParam("oslc.orderBy")     final String orderBy,
-    		                                             @QueryParam("oslc.searchTerms") final String searchTerms,
-    		                                             @QueryParam("oslc.paging")      final String paging,
-    		                                             @QueryParam("oslc.pageSize")    final String pageSize) throws IOException, ServletException 
-    {
-        boolean isPaging = false;
-        
-        if (paging != null) {
-            isPaging = Boolean.parseBoolean(paging);
-        }
-        
-    	int page=0;
-    	
-        if (null != pageString) {
-            page = Integer.parseInt(pageString);
-        }
-        
-    	int limit=10;
-    	
-    	if (isPaging && pageSize != null) {
-    	    limit = Integer.parseInt(pageSize);
-    	}
-    	
-    	Map<String, String> prefixMap;
-    	
-        try {
-            prefixMap = QueryUtils.parsePrefixes(prefix);
-        } catch (ParseException e) {
-           throw new IOException(e);
-        }
-        
-        addDefaultPrefixes(prefixMap);
-        
-        Properties properties;
-        
-        if (select == null) {
-            properties = QueryUtils.WILDCARD_PROPERTY_LIST;
-        } else {
-            try {
-                properties = QueryUtils.parseSelect(select, prefixMap);
-            } catch (ParseException e) {
-                throw new IOException(e);
-            }
-        }
-        
-        Map<String, Object> propMap =
-            QueryUtils.invertSelectedProperties(properties);
-        
-        final List<VocabularyTO> results = null;
-//            BugzillaManager.getBugsByProduct(httpServletRequest, conceptId, page, limit,
-//                                             where, prefixMap,
-//                                             propMap, orderBy, searchTerms);
-        
-        Object nextPageAttr = httpServletRequest.getAttribute(Constants.NEXT_PAGE);
-        
-        if (! isPaging && nextPageAttr != null) {
-            
-            String location = 
-                uriInfo.getBaseUri().toString() + uriInfo.getPath() + '?' +
-                (where != null ? ("oslc.where=" + URLEncoder.encode(where, "UTF-8") + '&') : "") +
-                (select != null ? ("oslc.select=" + URLEncoder.encode(select, "UTF-8") + '&') : "") +
-                (prefix != null ? ("oslc.prefix=" + URLEncoder.encode(prefix, "UTF-8") + '&') : "") +
-                (orderBy != null ? ("oslc.orderBy=" + URLEncoder.encode(orderBy, "UTF-8") + '&') : "") +
-                (searchTerms != null ? ("oslc.searchTerms=" + URLEncoder.encode(searchTerms, "UTF-8") + '&') : "") +
-                "oslc.paging=true&oslc.pageSize=" + limit;
-                
-            try {
-                throw new WebApplicationException(Response.temporaryRedirect(new URI(location)).build());
-            } catch (URISyntaxException e) {
-                // XXX - Can't happen
-                throw new IllegalStateException(e);
-            }
-        }
-        
-        httpServletRequest.setAttribute(OSLC4JConstants.OSLC4J_SELECTED_PROPERTIES,
-                                        propMap);
-        
-        if (nextPageAttr != null) {
-            
-            String location = 
-                uriInfo.getBaseUri().toString() + uriInfo.getPath() + '?' +
-                (where != null ? ("oslc.where=" + URLEncoder.encode(where, "UTF-8") + '&') : "") +
-                (select != null ? ("oslc.select=" + URLEncoder.encode(select, "UTF-8") + '&') : "") +
-                (prefix != null ? ("oslc.prefix=" + URLEncoder.encode(prefix, "UTF-8") + '&') : "") +
-                (orderBy != null ? ("oslc.orderBy=" + URLEncoder.encode(orderBy, "UTF-8") + '&') : "") +
-                (searchTerms != null ? ("oslc.searchTerms=" + URLEncoder.encode(searchTerms, "UTF-8") + '&') : "") +
-                "oslc.paging=true&oslc.pageSize=" + limit + "&page=" + nextPageAttr;
-                
-            httpServletRequest.setAttribute(OSLC4JConstants.OSLC4J_NEXT_PAGE,
-                                            location);
-
-        }
-
-        return results;
-    }
-
-    private static void addDefaultPrefixes(final Map<String, String> prefixMap)  {
-        //recursivelyCollectNamespaceMappings(prefixMap, BugzillaChangeRequest.class);
-    }  
-    
+//	 /**
+//     * RDF/XML, XML and JSON representation of a change request collection
+//     * 
+//     * TODO:  add query support
+//     * 
+//     * @param conceptId
+//     * @param where
+//     * @param select
+//     * @param prefix
+//     * @param pageString
+//     * @param orderBy
+//     * @param searchTerms
+//     * @param paging
+//     * @param pageSize
+//     * @return
+//     * @throws IOException
+//     * @throws ServletException
+//     */
+//    @GET
+//    @Produces({OslcMediaType.APPLICATION_RDF_XML, OslcMediaType.APPLICATION_XML, OslcMediaType.APPLICATION_JSON})
+//    public List<VocabularyTO> getVocabularyElement       (@PathParam("conceptID")         final String conceptId,
+//    		                                 	     	 @QueryParam("oslc.where")       final String where,
+//    		                                 		     @QueryParam("oslc.select")      final String select,
+//    		                                 		     @QueryParam("oslc.prefix")      final String prefix,
+//    		                                             @QueryParam("page")             final String pageString,
+//    		                                             @QueryParam("oslc.orderBy")     final String orderBy,
+//    		                                             @QueryParam("oslc.searchTerms") final String searchTerms,
+//    		                                             @QueryParam("oslc.paging")      final String paging,
+//    		                                             @QueryParam("oslc.pageSize")    final String pageSize) throws IOException, ServletException 
+//    {
+//        boolean isPaging = false;
+//        
+//        if (paging != null) {
+//            isPaging = Boolean.parseBoolean(paging);
+//        }
+//        
+//    	int page=0;
+//    	
+//        if (null != pageString) {
+//            page = Integer.parseInt(pageString);
+//        }
+//        
+//    	int limit=10;
+//    	
+//    	if (isPaging && pageSize != null) {
+//    	    limit = Integer.parseInt(pageSize);
+//    	}
+//    	
+//    	Map<String, String> prefixMap;
+//    	
+//        try {
+//            prefixMap = QueryUtils.parsePrefixes(prefix);
+//        } catch (ParseException e) {
+//           throw new IOException(e);
+//        }
+//        
+//        addDefaultPrefixes(prefixMap);
+//        
+//        Properties properties;
+//        
+//        if (select == null) {
+//            properties = QueryUtils.WILDCARD_PROPERTY_LIST;
+//        } else {
+//            try {
+//                properties = QueryUtils.parseSelect(select, prefixMap);
+//            } catch (ParseException e) {
+//                throw new IOException(e);
+//            }
+//        }
+//        
+//        Map<String, Object> propMap =
+//            QueryUtils.invertSelectedProperties(properties);
+//        
+//        final List<VocabularyTO> results = null;
+////            BugzillaManager.getBugsByProduct(httpServletRequest, conceptId, page, limit,
+////                                             where, prefixMap,
+////                                             propMap, orderBy, searchTerms);
+//        
+//        Object nextPageAttr = httpServletRequest.getAttribute(Constants.NEXT_PAGE);
+//        
+//        if (! isPaging && nextPageAttr != null) {
+//            
+//            String location = 
+//                uriInfo.getBaseUri().toString() + uriInfo.getPath() + '?' +
+//                (where != null ? ("oslc.where=" + URLEncoder.encode(where, "UTF-8") + '&') : "") +
+//                (select != null ? ("oslc.select=" + URLEncoder.encode(select, "UTF-8") + '&') : "") +
+//                (prefix != null ? ("oslc.prefix=" + URLEncoder.encode(prefix, "UTF-8") + '&') : "") +
+//                (orderBy != null ? ("oslc.orderBy=" + URLEncoder.encode(orderBy, "UTF-8") + '&') : "") +
+//                (searchTerms != null ? ("oslc.searchTerms=" + URLEncoder.encode(searchTerms, "UTF-8") + '&') : "") +
+//                "oslc.paging=true&oslc.pageSize=" + limit;
+//                
+//            try {
+//                throw new WebApplicationException(Response.temporaryRedirect(new URI(location)).build());
+//            } catch (URISyntaxException e) {
+//                // XXX - Can't happen
+//                throw new IllegalStateException(e);
+//            }
+//        }
+//        
+//        httpServletRequest.setAttribute(OSLC4JConstants.OSLC4J_SELECTED_PROPERTIES,
+//                                        propMap);
+//        
+//        if (nextPageAttr != null) {
+//            
+//            String location = 
+//                uriInfo.getBaseUri().toString() + uriInfo.getPath() + '?' +
+//                (where != null ? ("oslc.where=" + URLEncoder.encode(where, "UTF-8") + '&') : "") +
+//                (select != null ? ("oslc.select=" + URLEncoder.encode(select, "UTF-8") + '&') : "") +
+//                (prefix != null ? ("oslc.prefix=" + URLEncoder.encode(prefix, "UTF-8") + '&') : "") +
+//                (orderBy != null ? ("oslc.orderBy=" + URLEncoder.encode(orderBy, "UTF-8") + '&') : "") +
+//                (searchTerms != null ? ("oslc.searchTerms=" + URLEncoder.encode(searchTerms, "UTF-8") + '&') : "") +
+//                "oslc.paging=true&oslc.pageSize=" + limit + "&page=" + nextPageAttr;
+//                
+//            httpServletRequest.setAttribute(OSLC4JConstants.OSLC4J_NEXT_PAGE,
+//                                            location);
+//
+//        }
+//
+//        return results;
+//    }
+//
+//    private static void addDefaultPrefixes(final Map<String, String> prefixMap)  {
+//        //recursivelyCollectNamespaceMappings(prefixMap, BugzillaChangeRequest.class);
+//    }  
+//    
     
 	public static VocabularyTO createElement(int i) throws URISyntaxException{
 		VocabularyTO vocabularyElement = new VocabularyTO();

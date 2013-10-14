@@ -22,7 +22,7 @@ public interface Constants{
     public static String TRC_NAMESPACE					 = "http://thereusecompany.com/ontology/";
     
 
-    public static String CHANGE_REQUEST             = "RequirementManagement";
+    public static String CHANGE_REQUEST             = "VocabularyManagement";
     public static String TYPE_CHANGE_REQUEST        = REQUIREMENTS_MANAGEMENT_NAMESPACE + CHANGE_REQUEST;
     public static String TYPE_CHANGE_SET            = SOFTWARE_CONFIGURATION_MANAGEMENT_NAMESPACE + "ChangeSet";
     public static String TYPE_DISCUSSION            = OslcConstants.OSLC_CORE_NAMESPACE + "Discussion";
@@ -41,7 +41,7 @@ public interface Constants{
     public static String TYPE_TEST_RESULT           = QUALITY_MANAGEMENT_NAMESPACE + "TestResult";
     public static String TYPE_TEST_SCRIPT           = QUALITY_MANAGEMENT_NAMESPACE + "TestScript";
 
-    public static String PATH_CHANGE_REQUEST = "changeRequest";
+    public static String PATH_VOCABULARY_REQUEST = "vocabularyRequest";
 
     public static String USAGE_LIST = REQUIREMENTS_MANAGEMENT_NAMESPACE + "list";
 

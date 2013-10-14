@@ -33,8 +33,8 @@ import es.uc3m.inf.kr.oslcrm.SKOS;
 
 //OSLC4J should give an rdf:type of oslc_cm:ChangeRequest
 @OslcNamespace(Constants.REQUIREMENTS_MANAGEMENT_NAMESPACE)
-@OslcName("RequirementManagement") 
-@OslcResourceShape(title = "Requirement management Resource Shape", describes = Constants.TYPE_CHANGE_REQUEST)
+@OslcName("VocabularyManagement") 
+@OslcResourceShape(title = "Vocabulary management Resource Shape", describes = Constants.TYPE_CHANGE_REQUEST)
 public class ManagedVocabularyTO extends AbstractResource{
 /**
  * <http://threusecompany/km/taxonomy/demo/1381307095/c1>
@@ -86,7 +86,7 @@ public class ManagedVocabularyTO extends AbstractResource{
 	   private String notation;
 	   private String subject;
 	   private String level;
-	   
+	   private String inScheme;
 	   //private VocabularyTO related;
 	   
 	   
@@ -301,5 +301,18 @@ public class ManagedVocabularyTO extends AbstractResource{
 			this.level = level;
 		}
 	    
-	
+		@OslcDescription("An scheme URI")
+	    @OslcName("inScheme")
+	    @OslcPropertyDefinition(Constants.TRC_NAMESPACE + "inScheme")
+	    @OslcRepresentation(Representation.Inline)
+	    @OslcValueType(ValueType.String)
+	    @OslcReadOnly
+	    @OslcTitle("inScheme")
+		public String getInScheme() {
+			return inScheme;
+		}
+
+		public void setInScheme(String inScheme) {
+			this.inScheme = inScheme;
+		}
 }
