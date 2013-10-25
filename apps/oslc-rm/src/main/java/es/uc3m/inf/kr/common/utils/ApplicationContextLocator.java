@@ -35,7 +35,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class ApplicationContextLocator {
 
-	private static final String BEANS_XML = "/resources/pscs-api-beans.xml";
+	private static final String BEANS_XML = "/resources/oslc-rm-api-beans.xml";
 
 
 	private static ApplicationContext applicationContext;

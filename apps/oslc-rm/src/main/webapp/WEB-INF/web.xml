@@ -17,7 +17,7 @@
 		<servlet-class>org.apache.wink.server.internal.servlet.RestServlet</servlet-class>
 		<init-param>
 			<param-name>javax.ws.rs.Application</param-name>
-			<param-value>es.uc3m.inf.kr.oslcrm.services.OSLCQMApplication</param-value>
+			<param-value>es.uc3m.inf.kr.oslcrm.services.OSLCRMApplication</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>

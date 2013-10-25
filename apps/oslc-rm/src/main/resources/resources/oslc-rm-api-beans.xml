@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+<!-- 
+	<bean id="ResourcesCPVFileDAO" class=es.uc3m.inf.kr.loader.resources.FilesResourceLoader"
+		lazy-init="true">
+		<constructor-arg>
+		  <list>
+     		<value>cpv/cpv-2008.ttl</value>
+  		 </list>
+		</constructor-arg>
+	</bean>
+	 -->
+	<bean id="VocabularyDAO" class="es.uc3m.inf.kr.dao.CPV2008FileDAOImpl" lazy-init="true">
+		
+	</bean>
+	
+	
+	
+	
+	
+</beans>
