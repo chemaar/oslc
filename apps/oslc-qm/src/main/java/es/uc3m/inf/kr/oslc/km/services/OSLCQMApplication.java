@@ -14,7 +14,7 @@
  *     Michael Fiedler     - initial API and implementation for Bugzilla adapter
  *     
  *******************************************************************************/
-package es.uc3m.inf.kr.oslcrm.services;
+package es.uc3m.inf.kr.oslc.km.services;
 
 import java.net.URISyntaxException;
 import java.util.HashMap;

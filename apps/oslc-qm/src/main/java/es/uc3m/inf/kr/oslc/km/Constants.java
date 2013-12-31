@@ -1,4 +1,4 @@
-package es.uc3m.inf.kr.oslcrm;
+package es.uc3m.inf.kr.oslc.km;
 
 import org.eclipse.lyo.oslc4j.core.model.OslcConstants;
 
