@@ -26,14 +26,26 @@ public class FilesResourceLoader  implements ResourceLoader {
     private static final Logger logger = Logger.getLogger(FilesResourceLoader.class);
 
     private String []resourceNames;
+
+	private String format = "";
     
+    public FilesResourceLoader(String[] filenames, String format) {
+        this.resourceNames = filenames;
+        this.format = format;
+    }
+    public FilesResourceLoader(List <String>filenames, String format) {
+        this.resourceNames = filenames.toArray(new String[filenames.size()]);
+        this.format = format;
+    }
+
     public FilesResourceLoader(String[] filenames) {
         this.resourceNames = filenames;
     }
     public FilesResourceLoader(List <String>filenames) {
         this.resourceNames = filenames.toArray(new String[filenames.size()]);
     }
-
+    
+    
     protected InputStream openInputStream(String filename) throws FileNotFoundException {
         logger.debug("Opening resource input stream for filename: " + filename);
         ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
@@ -81,6 +93,9 @@ public class FilesResourceLoader  implements ResourceLoader {
         }
         return  ontologies.toArray(new KnowledgeResourcesTO[ontologies.size()]);
     }
+	public String getFormat() {
+		return this.format;
+	}
 
 
 

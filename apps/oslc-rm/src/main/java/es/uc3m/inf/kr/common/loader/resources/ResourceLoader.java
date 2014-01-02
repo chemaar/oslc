@@ -14,5 +14,6 @@ public interface ResourceLoader {
     
     public KnowledgeResourcesTO [] getKnowledgeResources() throws ResourceNotFoundException;
     public Document getKnowledgeResourceAsDocument(String filename) throws ResourceNotFoundException;
+    public String getFormat();
     
 }

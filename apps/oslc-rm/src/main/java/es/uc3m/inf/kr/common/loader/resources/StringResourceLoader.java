@@ -23,11 +23,21 @@ public class StringResourceLoader  implements ResourceLoader {
     private static final Logger logger = Logger.getLogger(StringResourceLoader.class);
 
     private String content;
+    private String format = "";
+    
+    public StringResourceLoader(String content, String format) {
+       this.content = content;
+       this.format = format;
+    }
+
+    
     
     public StringResourceLoader(String content) {
        this.content = content;
+       this.format = format;
     }
-
+    
+    
     public Document getKnowledgeResourceAsDocument(String filename) throws ResourceNotFoundException {
         try {
             return DocumentBuilderHelper.getDocumentFromString(content);
@@ -45,6 +55,11 @@ public class StringResourceLoader  implements ResourceLoader {
         knowledgeResourcesTO.setKnowledgeSourceData(knowledgeSourceData);
         return  new KnowledgeResourcesTO[]{knowledgeResourcesTO};
     }
+
+	public String getFormat() {
+	
+		return this.format;
+	}
 
 
 

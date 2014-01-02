@@ -76,8 +76,8 @@ public class JenaOWLModelWrapper implements KRModelWrapper{
         logger.debug("Loading " + owlsources.length  +" resources into the model");
         for ( int i = 0; i< owlsources.length ; i++ ) {
             final InputStream is = owlsources[i].getKnowledgeSourceData();        
-            logger.debug("Loading OWL "+owlsources[i].getKnowledgeSourcePk());
-            ontModel.read(is, this.format);   
+            logger.debug("Loading model "+owlsources[i].getKnowledgeSourcePk()+" "+this.format);
+            ontModel.read(is,"", this.format);   
             try {
                 is.close();
             } catch (IOException e) {

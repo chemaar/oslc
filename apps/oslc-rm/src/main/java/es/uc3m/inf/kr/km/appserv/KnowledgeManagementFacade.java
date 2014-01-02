@@ -50,6 +50,8 @@ public class KnowledgeManagementFacade{
                 this.model = ModelFactory.createOntologyModel();
                 updateModel();
         }
+        
+ 
 
         private void updateModel() {
                 this.model.add(this.defaultModel);
@@ -57,11 +59,7 @@ public class KnowledgeManagementFacade{
 
         private OntModel createDefaultModel() {
                 ResourceLoader loader = new FilesResourceLoader(new String[]{
-                                "ontologies/doap.rdf",
-                                "ontologies/foaf.rdf",
-                                //"ontologies/sioc.rdf",                                
-                                "ontologies/common-tag.rdf",
-                                "ontologies/org.rdf"
+                              //  "data/car-example-skos.ttl"
                                 
                 });
                 JenaOWLModelWrapper wrapper = new JenaOWLModelWrapper(loader);
