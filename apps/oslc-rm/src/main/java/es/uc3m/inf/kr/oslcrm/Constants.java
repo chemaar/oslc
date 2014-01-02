@@ -1,5 +1,6 @@
 package es.uc3m.inf.kr.oslcrm;
 
+import org.eclipse.lyo.oslc4j.core.OSLC4JConstants;
 import org.eclipse.lyo.oslc4j.core.model.OslcConstants;
 
 import com.hp.hpl.jena.sparql.vocabulary.FOAF;
@@ -9,37 +10,17 @@ public interface Constants{
     public static String REQUIREMENTS_MANAGEMENT_NAMESPACE           = "http://open-services.net/ns/rm#";
     public static String REQUIREMENTS_MANAGEMENT_PREFIX              = "oslc_rm";
     
-    public static String QUALITY_MANAGEMENT_DOMAIN                    = "http://open-services.net/ns/qm#";
-    public static String QUALITY_MANAGEMENT_NAMESPACE           = "http://open-services.net/ns/qm#";
-    public static String QUALITY_MANAGEMENT_PREFIX              = "oslc_qm";
-    
-    public static String SOFTWARE_CONFIGURATION_MANAGEMENT_NAMESPACE = "http://open-services.net/ns/scm#";
-    public static String SOFTWARE_CONFIGURATION_MANAGEMENT_PREFIX    = "oslc_scm";
-    public static String BUGZILLA_DOMAIN							 = "http://www.bugzilla.org/rdf#"; 
-    public static String BUGZILLA_NAMESPACE							 = "http://www.bugzilla.org/rdf#";
-    public static String BUGZILLA_NAMESPACE_PREFIX					 = "bugz";
-    
     public static String TRC_NAMESPACE					 = "http://thereusecompany.com/ontology/";
     
 
     public static String REQUIREMENT_REQUEST             = "RequirementManagement";
     public static String TYPE_REQUIREMENT_REQUEST        = REQUIREMENTS_MANAGEMENT_NAMESPACE + REQUIREMENT_REQUEST;
-    public static String TYPE_CHANGE_SET            = SOFTWARE_CONFIGURATION_MANAGEMENT_NAMESPACE + "ChangeSet";
-    public static String TYPE_DISCUSSION            = OslcConstants.OSLC_CORE_NAMESPACE + "Discussion";
   
     /*FOAF Properties*/
     public static String FOAF_NAMESPACE                = "http://xmlns.com/foaf/0.1/";
     public static String FOAF_PERSON                =     FOAF_NAMESPACE+"Person";
     public static String FOAF_NAME_PROPERTY               = FOAF_NAMESPACE+"name";
     public static String FOAF_MBOX_PROPERTY               = FOAF_NAMESPACE+"mbox";
-
-    public static String TYPE_REQUIREMENT           = REQUIREMENTS_MANAGEMENT_NAMESPACE + "Requirement";
-    
-    public static String TYPE_TEST_CASE             = QUALITY_MANAGEMENT_NAMESPACE + "TestCase";
-    public static String TYPE_TEST_EXECUTION_RECORD = QUALITY_MANAGEMENT_NAMESPACE + "TestExecutionRecord";
-    public static String TYPE_TEST_PLAN             = QUALITY_MANAGEMENT_NAMESPACE + "TestPlan";
-    public static String TYPE_TEST_RESULT           = QUALITY_MANAGEMENT_NAMESPACE + "TestResult";
-    public static String TYPE_TEST_SCRIPT           = QUALITY_MANAGEMENT_NAMESPACE + "TestScript";
 
     public static String PATH_VOCABULARY_REQUEST = "vocabularyRequest";
 
@@ -52,11 +33,36 @@ public interface Constants{
     
     /**Dublin Core**/
     
-    public static final String DCTERMS = "http://purl.org/dc/terms/";
-    public static final String DCTERMS_TITLE = "http://purl.org/dc/terms/title";
+    public static final String DCTERMS = OslcConstants.DCTERMS_NAMESPACE_PREFIX;
+    public static final String DCTERMS_TITLE = DCTERMS+"title";
+    public static final String DCTERMS_DESCRIPTION = DCTERMS+"description";
+    public static final String DCTERMS_IDENTIFIER = DCTERMS+"identifier";
+    public static final String DCTERMS_SUBJECT = DCTERMS+"subject";
+    public static final String DCTERMS_CREATOR = DCTERMS+"creator";
+    public static final String DCTERMS_CONTRIBUTOR = DCTERMS+"contributor";
+    public static final String DCTERMS_CREATED = DCTERMS+"created";
+    public static final String DCTERMS_MODIFIED = DCTERMS+"modified";
+
     /**OSLC Core**/
-    
+    public static final String OSLC_CORE = OslcConstants.OSLC_CORE_NAMESPACE_PREFIX;
+    public static final String OSLC_CORE_SHORT_TITLE = OSLC_CORE+"shortTitle";
     /**OSLC RM**/
     
+    public static final String OSLC_RM = REQUIREMENTS_MANAGEMENT_NAMESPACE;
+    public static final String OSLC_RM_ELABORATED_BY = OSLC_RM+"elaboratedBy";
+    public static final String OSLC_RM_ELABORATES = OSLC_RM+"elaborates";
+    public static final String OSLC_RM_SPECIFIED_BY= OSLC_RM+"specifiedBy";
+    public static final String OSLC_RM_SPECIFIES= OSLC_RM+"specifies";
+    public static final String OSLC_RM_AFFECTED_BY= OSLC_RM+"affectedBy";
+    public static final String OSLC_RM_TRACKED_BY= OSLC_RM+"trackedBy";
+    public static final String OSLC_RM_IMPLEMENTED_BY= OSLC_RM+"implementedBy";
+    public static final String OSLC_RM_VALIDATED_BY= OSLC_RM+"validatedBy";
+    public static final String OSLC_RM_SATISFIED_BY= OSLC_RM+"satisfiedBy";
+    public static final String OSLC_RM_SATISFIES= OSLC_RM+"satisfies";
+    public static final String OSLC_RM_DECOMPOSED_BY= OSLC_RM+"decomposedBy";
+    public static final String OSLC_RM_DECOMPOSES= OSLC_RM+"decomposes";
+    public static final String OSLC_RM_CONSTRAINED_BY= OSLC_RM+"constrainedBy";
+    public static final String OSLC_RM_CONSTRAINTS= OSLC_RM+"constraints";
+    public static final String OSLC_RM_USES= OSLC_RM+"uses";
 
 }
