@@ -1,4 +1,4 @@
-package es.uc3m.inf.kr.dao;
+package es.uc3m.inf.kr.km.dao;
 
 import java.net.URISyntaxException;
 import java.util.List;

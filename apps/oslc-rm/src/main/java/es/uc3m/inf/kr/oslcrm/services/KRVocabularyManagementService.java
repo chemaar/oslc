@@ -34,7 +34,7 @@ import org.eclipse.lyo.oslc4j.core.model.OslcConstants;
 import org.eclipse.lyo.oslc4j.core.model.OslcMediaType;
 
 import es.uc3m.inf.kr.common.utils.ApplicationContextLocator;
-import es.uc3m.inf.kr.dao.VocabularyDAO;
+import es.uc3m.inf.kr.km.dao.VocabularyDAO;
 import es.uc3m.inf.kr.oslcrm.Constants;
 import es.uc3m.inf.kr.oslcrm.to.Person;
 import es.uc3m.inf.kr.oslcrm.to.VocabularyTO;
