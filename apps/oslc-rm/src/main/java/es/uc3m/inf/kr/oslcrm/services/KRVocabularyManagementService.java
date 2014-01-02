@@ -39,9 +39,8 @@ import es.uc3m.inf.kr.oslcrm.Constants;
 import es.uc3m.inf.kr.oslcrm.to.Person;
 import es.uc3m.inf.kr.oslcrm.to.VocabularyTO;
 
-@OslcService(Constants.REQUIREMENTS_MANAGEMENT_DOMAIN)
+@OslcService(Constants.VOCABULARY_MANAGEMENT_DOMAIN)
 @Path("vocabularyManagement")
-//@Path("{productId}/requirementManagement")
 public class KRVocabularyManagementService {
 
 	@Context private HttpServletRequest httpServletRequest;
@@ -61,7 +60,6 @@ public class KRVocabularyManagementService {
 				(
 						title = "Vocabulary Management Selection Dialog",
 						label = "Vocabulary Management Selection Dialog",
-						//uri = "/{productId}/requirementManagement/selector",
 						uri = "/vocabularyManagement/selector",
 						hintWidth = "525px",
 						hintHeight = "325px",
@@ -115,7 +113,6 @@ public class KRVocabularyManagementService {
 	@Path("cpv/{conceptID}")
 	@Produces({OslcMediaType.APPLICATION_RDF_XML, OslcMediaType.APPLICATION_XML, OslcMediaType.APPLICATION_JSON})
 	public VocabularyTO getVocabularyConcepts(@PathParam("conceptID") final String conceptId) throws IOException, ServletException {
-		System.out.println("TRYING TO GET "+conceptId);
 		 return dao.getVocabularyElement(conceptId);
 	}
 	

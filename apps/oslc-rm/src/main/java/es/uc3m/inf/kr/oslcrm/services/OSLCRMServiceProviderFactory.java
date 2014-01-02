@@ -20,7 +20,8 @@ public class OSLCRMServiceProviderFactory{
         //ServiceProviderService.class,
         DummyServiceProviderService.class,
         ServiceProviderCatalogService.class,
-        KRVocabularyManagementService.class
+        KRVocabularyManagementService.class,
+        RequirementManagementService.class
     };
 
     private OSLCRMServiceProviderFactory()   {
@@ -55,7 +56,6 @@ public class OSLCRMServiceProviderFactory{
             new PrefixDefinition(OslcConstants.RDF_NAMESPACE_PREFIX,                 new URI(OslcConstants.RDF_NAMESPACE)),
             new PrefixDefinition(OslcConstants.RDFS_NAMESPACE_PREFIX,                new URI(OslcConstants.RDFS_NAMESPACE)),
             new PrefixDefinition(Constants.REQUIREMENTS_MANAGEMENT_PREFIX,           new URI(Constants.REQUIREMENTS_MANAGEMENT_NAMESPACE)),
-         //   new PrefixDefinition(Constants.SOFTWARE_CONFIGURATION_MANAGEMENT_PREFIX, new URI(Constants.SOFTWARE_CONFIGURATION_MANAGEMENT_NAMESPACE)),
             //Adding new ones FIXME: read from properties
             new PrefixDefinition("skos", new URI(SKOS.CORE_NAMESPACE)),
             new PrefixDefinition("foaf", new URI(Constants.FOAF_NAMESPACE))

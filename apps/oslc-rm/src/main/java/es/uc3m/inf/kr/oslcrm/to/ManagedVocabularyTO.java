@@ -31,47 +31,11 @@ import org.eclipse.lyo.oslc4j.core.model.ValueType;
 import es.uc3m.inf.kr.oslcrm.Constants;
 import es.uc3m.inf.kr.oslcrm.SKOS;
 
-//OSLC4J should give an rdf:type of oslc_cm:ChangeRequest
 @OslcNamespace(Constants.REQUIREMENTS_MANAGEMENT_NAMESPACE)
 @OslcName("VocabularyManagement") 
-@OslcResourceShape(title = "Vocabulary management Resource Shape", describes = Constants.TYPE_REQUIREMENT_REQUEST)
+@OslcResourceShape(title = "Vocabulary management Resource Shape", describes = Constants.KM_TYPE_VOCABULARY_ELEMENT)
 public class ManagedVocabularyTO extends AbstractResource{
-/**
- * <http://threusecompany/km/taxonomy/demo/1381307095/c1>
-      a   skos:Concept ;
-      #1-Authoring properties
-      dcterms:author  km-people:JM;
-      dcterms:created "2013-10-10"^^xsd:date ;
-      dcterms:modified "2013-10-10"^^xsd:date ;
-      #2-Lexical labels
-      rdfs:label "zonas"@ES;
-      rdfs:label "areas"@EN;
-      skos:prefLabel "zonas"@ES;
-      skos:prefLabel "areas"@EN;   
-      skos:altLabel "superficie"@ES;
-      skos:altLabel "zones"@EN; 
-      #3-Documentation properties
-      skos:changeNote "An example of change note."@EN;
-      skos:editorialNote "An example of editorial note"@EN;
-      skos:historyNote "An example of history note"@EN;
-      skos:scopeNote "An example of scope note"@EN;
-      #4-Notation
-      skos:notation "c1"^^xsd:string ;
-      dcterms:subject "1"^^xsd:string ;
-      km:level "1"; 
-      #5-Semantic and hierarchy properties
-      #sym property skos:related <>; 
-      #km:related <>;
-      skos:narrower 
-	<http://threusecompany/km/taxonomy/demo/1381307095/c11>,
-	<http://threusecompany/km/taxonomy/demo/1381307095/c12>,
-	<http://threusecompany/km/taxonomy/demo/1381307095/c13>;
-      #6-Mapping properties
-      #skos:closeMatch <>;
-      #7-Concept Scheme
-      skos:inScheme <http://threusecompany/km/taxonomy/demo/ds> ;
-      .
- */
+
 	   private final List<Person>   authors = new ArrayList<Person>();
 	   private Date creationDate;
 	   private Date modifiedDate;
@@ -87,6 +51,7 @@ public class ManagedVocabularyTO extends AbstractResource{
 	   private String subject;
 	   private String level;
 	   private String inScheme;
+	   private final List<ManagedVocabularyTO>   narrower = new ArrayList<ManagedVocabularyTO>();
 	   //private VocabularyTO related;
 	   
 	   
@@ -97,7 +62,7 @@ public class ManagedVocabularyTO extends AbstractResource{
 	   
 	    @OslcDescription("The person(s) who are responsible for the work needed to manage a requiremen.")
 	    @OslcName("author")
-	    @OslcPropertyDefinition(OslcConstants.DCTERMS_NAMESPACE + "author")
+	    @OslcPropertyDefinition(Constants.DCTERMS_CREATOR)
 	    @OslcRepresentation(Representation.Inline)
 	    @OslcValueType(ValueType.LocalResource)
 	    @OslcRange(Constants.FOAF_PERSON)
@@ -109,12 +74,12 @@ public class ManagedVocabularyTO extends AbstractResource{
 	    
 	    @OslcDescription("The data in which the element was created")
 	    @OslcName("created")
-	    @OslcPropertyDefinition(OslcConstants.DCTERMS_NAMESPACE + "created")
+	    @OslcPropertyDefinition(Constants.DCTERMS_CREATED)
 	    @OslcRepresentation(Representation.Inline)
-	    @OslcValueType(ValueType.LocalResource)
+	    @OslcValueType(ValueType.DateTime)
 	    @OslcTitle("Date")
-	    public String getCreationDate(){
-	    	return this.creationDate.toLocaleString();
+	    public Date getCreationDate(){
+	    	return this.creationDate;
 	    }
 	    
 	    public void setCreationDate(Date date){
@@ -124,7 +89,7 @@ public class ManagedVocabularyTO extends AbstractResource{
 
 	    @OslcDescription("The data in which the element was modified")
 	    @OslcName("modified")
-	    @OslcPropertyDefinition(OslcConstants.DCTERMS_NAMESPACE + "modified")
+	    @OslcPropertyDefinition(Constants.DCTERMS_MODIFIED)
 	    @OslcRepresentation(Representation.Inline)
 	    @OslcValueType(ValueType.DateTime)
 	    @OslcTitle("DateModified")
@@ -288,7 +253,7 @@ public class ManagedVocabularyTO extends AbstractResource{
 
 		@OslcDescription("A level code")
 	    @OslcName("level")
-	    @OslcPropertyDefinition(Constants.TRC_NAMESPACE + "level")
+	    @OslcPropertyDefinition(Constants.KM_NAMESPACE + "level")
 	    @OslcRepresentation(Representation.Inline)
 	    @OslcValueType(ValueType.String)
 	    @OslcReadOnly
@@ -303,9 +268,9 @@ public class ManagedVocabularyTO extends AbstractResource{
 	    
 		@OslcDescription("An scheme URI")
 	    @OslcName("inScheme")
-	    @OslcPropertyDefinition(Constants.TRC_NAMESPACE + "inScheme")
+	    @OslcPropertyDefinition(Constants.KM_NAMESPACE + "inScheme")
 	    @OslcRepresentation(Representation.Inline)
-	    @OslcValueType(ValueType.String)
+	    @OslcValueType(ValueType.Resource)
 	    @OslcReadOnly
 	    @OslcTitle("inScheme")
 		public String getInScheme() {
@@ -315,4 +280,25 @@ public class ManagedVocabularyTO extends AbstractResource{
 		public void setInScheme(String inScheme) {
 			this.inScheme = inScheme;
 		}
+
+		public String getRdfsLabel() {
+			return rdfsLabel;
+		}
+
+		public void setRdfsLabel(String rdfsLabel) {
+			this.rdfsLabel = rdfsLabel;
+		}
+
+		@OslcDescription("An narrower element URI")
+	    @OslcName("narrower")
+	    @OslcPropertyDefinition(SKOS.NARROWER)
+	    @OslcRepresentation(Representation.Inline)
+	    @OslcValueType(ValueType.Resource)
+	    @OslcReadOnly
+	    @OslcTitle("narrower")
+		public List<ManagedVocabularyTO> getNarrower() {
+			return narrower;
+		}
+		
+		
 }

@@ -35,9 +35,8 @@ import org.eclipse.lyo.oslc4j.core.model.ServiceProviderCatalog;
  * The registered service providers are refreshed on each catalog or service provider collection
  * request.
  */
-public class ServiceProviderCatalogSingleton
-{
-    public static final String KM_UC3M_ID = "KMuc3m";
+public class ServiceProviderCatalogSingleton{
+    public static final String KM_UC3M_ID = "KMUC3M";
 	private static final ServiceProviderCatalog             serviceProviderCatalog;
     private static final SortedMap<String, ServiceProvider> serviceProviders = new TreeMap<String, ServiceProvider>();
 
@@ -48,7 +47,7 @@ public class ServiceProviderCatalogSingleton
             serviceProviderCatalog.setAbout(new URI(ServiceProviderRegistryURIs.getServiceProviderRegistryURI()));
             serviceProviderCatalog.setTitle("OSLC Service Provider Catalog");
             serviceProviderCatalog.setDescription("OSLC Service Provider Catalog");
-            serviceProviderCatalog.setPublisher(new Publisher("KR UC3M", "es.uc3m.kr.inf"));
+            serviceProviderCatalog.setPublisher(new Publisher("KR UC3M", "kf.inf.uc3m.es"));
             serviceProviderCatalog.getPublisher().setIcon(new URI("http://ocw.uc3m.es/ingenieria-informatica/ingenieria-de-la-informacion/imagenes/kr-logo-lateral-200.png"));
         }
         catch (final URISyntaxException exception){

@@ -10,12 +10,22 @@ public interface Constants{
     public static String REQUIREMENTS_MANAGEMENT_NAMESPACE           = "http://open-services.net/ns/rm#";
     public static String REQUIREMENTS_MANAGEMENT_PREFIX              = "oslc_rm";
     
-    public static String TRC_NAMESPACE					 = "http://thereusecompany.com/ontology/";
+    public static String KM_NAMESPACE					 = "http://kr.inf.uc3m.es/ontology/";
     
 
     public static String REQUIREMENT_REQUEST             = "RequirementManagement";
     public static String TYPE_REQUIREMENT_REQUEST        = REQUIREMENTS_MANAGEMENT_NAMESPACE + REQUIREMENT_REQUEST;
   
+    
+    /*KM Properties*/
+    
+	public static String VOCABULARY_MANAGEMENT_DOMAIN                    = "http://kr.inf.uc3m.es/km/vocabulary/";
+    
+    public static String KM_LEVEL                =     KM_NAMESPACE+"level";
+    public static String KM_TYPE_SYSTEM                =     KM_NAMESPACE+"System";
+    public static String KM_TYPE_COMPONENT              =     KM_NAMESPACE+"Component";
+    public static String KM_TYPE_VOCABULARY_ELEMENT              =     KM_NAMESPACE+"VocabularyElement";
+    
     /*FOAF Properties*/
     public static String FOAF_NAMESPACE                = "http://xmlns.com/foaf/0.1/";
     public static String FOAF_PERSON                =     FOAF_NAMESPACE+"Person";
@@ -33,7 +43,7 @@ public interface Constants{
     
     /**Dublin Core**/
     
-    public static final String DCTERMS = OslcConstants.DCTERMS_NAMESPACE_PREFIX;
+    public static final String DCTERMS = OslcConstants.DCTERMS_NAMESPACE;
     public static final String DCTERMS_TITLE = DCTERMS+"title";
     public static final String DCTERMS_DESCRIPTION = DCTERMS+"description";
     public static final String DCTERMS_IDENTIFIER = DCTERMS+"identifier";
