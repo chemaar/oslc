@@ -20,6 +20,8 @@ public interface Constants{
     /*KM Properties*/
     
 	public static String VOCABULARY_MANAGEMENT_DOMAIN                    = "http://kr.inf.uc3m.es/km/vocabulary/";
+	public static String KNOWLEDGE_MANAGEMENT_DOMAIN                    = "http://kr.inf.uc3m.es/km/";
+	public static String TYPE_KNOWLEDGE_ELEMENT       = KNOWLEDGE_MANAGEMENT_DOMAIN + "Resource";
     
     public static String KM_LEVEL                =     KM_NAMESPACE+"level";
     public static String KM_TYPE_SYSTEM                =     KM_NAMESPACE+"System";

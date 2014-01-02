@@ -33,6 +33,7 @@ public class JenaOWLModelWrapper implements KRModelWrapper{
     
     public JenaOWLModelWrapper(ResourceLoader resourceLoader) {
         this.resourceLoader = resourceLoader;
+        this.format = resourceLoader.getFormat();
     }
 
     public JenaOWLModelWrapper(ResourceLoader resourceLoader, String format) {

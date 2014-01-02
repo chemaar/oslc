@@ -11,6 +11,7 @@ import com.hp.hpl.jena.rdf.model.ModelFactory;
 import es.uc3m.inf.kr.common.loader.JenaOWLModelWrapper;
 import es.uc3m.inf.kr.common.loader.resources.FilesResourceLoader;
 import es.uc3m.inf.kr.common.loader.resources.ResourceLoader;
+import es.uc3m.inf.kr.common.utils.ApplicationContextLocator;
 import es.uc3m.inf.kr.km.dao.FileKnowledgeManagementDAOImpl;
 import es.uc3m.inf.kr.km.dao.KnowledgeManagementDAO;
 
@@ -22,6 +23,8 @@ public class KnowledgeManagementFacadeTest {
 		JenaOWLModelWrapper rdfModel = new JenaOWLModelWrapper(loader,"TURTLE");
 		KnowledgeManagementDAO dao = new FileKnowledgeManagementDAOImpl(rdfModel);
 		KnowledgeManagementFacade facade = new KnowledgeManagementFacade(dao);
+
+
 	}
 
 }

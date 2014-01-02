@@ -13,7 +13,7 @@ public class FileKnowledgeManagementDAOImpl implements KnowledgeManagementDAO {
         protected static Logger logger = Logger.getLogger(FileKnowledgeManagementDAOImpl.class);
         private KRModelWrapper ontModel;
         
-        public FileKnowledgeManagementDAOImpl(JenaOWLModelWrapper rdfModel) {
+        public FileKnowledgeManagementDAOImpl(KRModelWrapper rdfModel) {
         	  this.ontModel = rdfModel;
 		}
 

@@ -1,43 +1,77 @@
 package es.uc3m.inf.kr.common.to;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlType;
+import org.eclipse.lyo.oslc4j.core.annotation.OslcDescription;
+import org.eclipse.lyo.oslc4j.core.annotation.OslcName;
+import org.eclipse.lyo.oslc4j.core.annotation.OslcNamespace;
+import org.eclipse.lyo.oslc4j.core.annotation.OslcOccurs;
+import org.eclipse.lyo.oslc4j.core.annotation.OslcPropertyDefinition;
+import org.eclipse.lyo.oslc4j.core.annotation.OslcRange;
+import org.eclipse.lyo.oslc4j.core.annotation.OslcRepresentation;
+import org.eclipse.lyo.oslc4j.core.annotation.OslcResourceShape;
+import org.eclipse.lyo.oslc4j.core.annotation.OslcTitle;
+import org.eclipse.lyo.oslc4j.core.annotation.OslcValueType;
+import org.eclipse.lyo.oslc4j.core.model.AbstractResource;
+import org.eclipse.lyo.oslc4j.core.model.Occurs;
+import org.eclipse.lyo.oslc4j.core.model.OslcConstants;
+import org.eclipse.lyo.oslc4j.core.model.Representation;
+import org.eclipse.lyo.oslc4j.core.model.ValueType;
 
-@XmlRootElement(name = "resourceTO")
-@XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "resourceTO", propOrder = {
-    "uri",
-    "label",
-    "description",
-    "type"
-})
-public class ResourceTO {
+import es.uc3m.inf.kr.oslcrm.Constants;
+
+@OslcNamespace(Constants.KNOWLEDGE_MANAGEMENT_DOMAIN)
+@OslcName("KnowledgeManagement") 
+@OslcResourceShape(title = "Knowledge management Resource Shape", describes = Constants.KM_TYPE_VOCABULARY_ELEMENT)
+public class ResourceTO extends AbstractResource{
 
         private String uri = "";
         private String label = "";
         private String description = "";
         private String type = "";
         
+
+        @OslcDescription("A default Linked Data Label")
+	    @OslcName("label")
+	    @OslcPropertyDefinition(Constants.KM_NAMESPACE + "uri")
+	    @OslcRepresentation(Representation.Inline)
+	    @OslcValueType(ValueType.String)
+	    @OslcTitle("uri")
         public String getUri() {
                 return uri;
         }
         public void setUri(String uri) {
                 this.uri = uri;
         }
+        @OslcDescription("A default Linked Data Label")
+	    @OslcName("label")
+	    @OslcPropertyDefinition(OslcConstants.RDFS_NAMESPACE + "label")
+	    @OslcRepresentation(Representation.Inline)
+	    @OslcValueType(ValueType.String)
+	    @OslcTitle("label")
         public String getLabel() {
                 return label;
         }
         public void setLabel(String label) {
                 this.label = label;
         }
+    	@OslcDescription("The Element description.")
+    	@OslcOccurs(Occurs.ZeroOrOne)
+    	@OslcPropertyDefinition(Constants.DCTERMS_DESCRIPTION)
+    	@OslcRepresentation(Representation.Inline)
+    	@OslcValueType(ValueType.String)
+    	@OslcRange("xsd:string")
+    	@OslcTitle("description")
         public String getDescription() {
                 return description;
         }
         public void setDescription(String description) {
                 this.description = description;
         }
+        @OslcDescription("The Element type.")
+    	@OslcOccurs(Occurs.ExactlyOne)
+    	@OslcPropertyDefinition(OslcConstants.RDF_NAMESPACE+"type")
+    	@OslcRepresentation(Representation.Inline)
+    	@OslcValueType(ValueType.Resource)
+    	@OslcTitle("type")
         public String getType() {
                 return type;
         }

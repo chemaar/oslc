@@ -1,22 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
 <beans>
-<!-- 
-	<bean id="ResourcesCPVFileDAO" class=es.uc3m.inf.kr.loader.resources.FilesResourceLoader"
+	<!-- <bean id="ResourcesCPVFileDAO" class=es.uc3m.inf.kr.loader.resources.FilesResourceLoader" 
+		lazy-init="true"> <constructor-arg> <list> <value>cpv/cpv-2008.ttl</value> 
+		</list> </constructor-arg> </bean> -->
+	<bean id="VocabularyDAO" class="es.uc3m.inf.kr.dao.CPV2008FileDAOImpl"
 		lazy-init="true">
-		<constructor-arg>
-		  <list>
-     		<value>cpv/cpv-2008.ttl</value>
-  		 </list>
+
+	</bean>
+
+	<bean id="KnowledgeManagementAppServ" class="es.uc3m.inf.kr.km.appserv.KnowledgeManagementAppServ"
+		lazy-init="true">
+		<constructor-arg ref="KnowledgeManagementFacade" />
+	</bean>
+
+
+	<bean id="KnowledgeManagementFacade" class="es.uc3m.inf.kr.km.appserv.KnowledgeManagementFacade"
+		lazy-init="true">
+		<constructor-arg ref="KnowledgeManagementDAO" />
+	</bean>
+
+	<bean id="KnowledgeManagementDAO" class=" es.uc3m.inf.kr.km.dao.FileKnowledgeManagementDAOImpl"
+		lazy-init="true">
+		<constructor-arg ref="KRModelWrapper" />
+	</bean>
+
+
+	<bean id="KRModelWrapper" class=" es.uc3m.inf.kr.common.loader.JenaOWLModelWrapper"
+		lazy-init="true">
+		<constructor-arg ref="ResourceLoader" />
+	</bean>
+
+
+	<bean id="ResourceLoader"
+		class=" es.uc3m.inf.kr.common.loader.resources.FilesResourceLoader"
+		lazy-init="true">
+		<constructor-arg index="0">
+			<list>
+				<value>data/car-example-skos.ttl</value>
+			</list>
 		</constructor-arg>
+		<constructor-arg index="1" value="TURTLE" />
 	</bean>
-	 -->
-	<bean id="VocabularyDAO" class="es.uc3m.inf.kr.dao.CPV2008FileDAOImpl" lazy-init="true">
-		
-	</bean>
-	
-	
-	
-	
-	
+
+
+
 </beans>
