@@ -1,0 +1,229 @@
+@prefix void:    <http://rdfs.org/ns/void#> .
+@prefix dcterms:  <http://purl.org/dc/terms/> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix gr:      <http://purl.org/goodrelations/v1#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix foaf:    <http://xmlns.com/foaf/0.1/> .
+@prefix org:    <http://www.w3.org/ns/org#> .
+@prefix v: <http://www.w3.org/2006/vcard/ns#> .
+@prefix dbpedia-res: <http://dbpedia.org/resource/> .
+# Own namespaces 
+@prefix jose-foaf:      <http://www.josemalvarez.es/foaf.rdf#> .
+@prefix km:      <http://threusecompany/km/ontology/> .
+@prefix km-people:      <http://threusecompany/km/people/> .
+@prefix km-org:      <http://threusecompany/km/organization/> .
+@prefix km-demo:      <http://threusecompany/km/demo/> .
+@prefix km-demo-ontology:      <http://threusecompany/km/demo/ontology> .
+@prefix km-demo2:      <http://threusecompany/km/demo2/> .
+
+#Domain specific Definitions
+
+km-demo-ontology:System rdfs:subClassOf skos:Concept;
+	rdfs:label "An abstraction of a system."@en ;
+	.
+
+km-demo-ontology:System rdfs:subClassOf skos:Concept;
+	rdfs:label "An abstraction of a sub-system."@en ;
+	.
+	
+km-demo-ontology:Component rdfs:subClassOf skos:Concept;
+	rdfs:label "An abstraction of a component within a subsystem."@en ;
+	.
+	
+#Property specific Definitions
+
+km-demo-ontology:level a owl:DatatypeProperty;
+	rdfs:subClassOf skos:note;
+	rdfs:label "Level in the hierarchy"@en ;
+	rdfs:domain skos:Concept;
+	rdfs:range xsd:int;
+	.
+	
+km-demo-ontology:part-of rdfs:subClassOf skos:broader;
+	a owl:AsymmetricObjectProperty;
+	rdfs:label "Part of an element"@en ;
+	rdfs:domain skos:Concept;
+	rdfs:range skos:Concept;
+	.
+	
+km-demo-ontology:related rdfs:subClassOf skos:semanticRelation;
+	a owl:AsymmetricObjectProperty;
+	rdfs:label "Related but asymetric property"@en ;
+	rdfs:domain skos:Concept;
+	rdfs:range skos:Concept;
+	.
+	
+# --- Taxonomy metadata ---------------------------------------
+# --- Extensions: SKOS-XL and W3C Provenance
+#
+#
+#
+#Template for each top concept
+# <base_uri>/km/taxonomy/<project>/<timestamp>/<concept_id>
+# <concept_id> :: c[0-9]+
+#      a   skos:Concept ;
+#----------1-Authoring properties dcterms:*----------------------
+#      dcterms:author  <URI>;
+#      dcterms:created "2013-10-10"^^xsd:date ;
+#      dcterms:modified "2013-10-10"^^xsd:date ;
+#----------2-Lexical labels----------------------
+#      rdfs:label "Foo label"@LANG;
+#      skos:prefLabel "Foo preferred label"@LANG;
+#      skos:altLabel "Foo alternative label"@LANG;
+#----------3-Documentation properties
+#      skos:changeNote "Change note"@LANG;
+#      skos:editorialNote "Editorial note"@LANG;
+#      skos:historyNote "History note"@LANG;
+#      skos:scopeNote "Scope note"@LANG;
+#----------4-Notation properties
+#      skos:notation "id"^^xsd:string ;
+#      dcterms:subject "id, subject,..."^^xsd:string ;
+#      km:level "1"; 
+#----------5-Semantic and hierarchy properties
+#	if symmetric properties are required...
+#	skos:related <URI>; 
+#	otherwise
+#	km:related <URI>;
+#	if non-transitive hierarchy properties are required...Moreover we could only serialize one of them, the other can be inferred: broader(x,y)->narrower(y,x)
+#      skos:narrower <URI>;
+#      skos:broader <URI>;
+#	otherwise...use the transitive version...that can also be inferred.
+#      skos:narrowerTransitive <URI>;
+#      skos:broaderTransitive <URI>;
+#----------6-Mapping properties
+#	skos:closeMatch|exactMatch... <URI>;
+#----------7-Concept Scheme
+#      skos:inScheme <URI> ;
+#      .
+
+#Concept scheme metadata
+
+<http://threusecompany/km/demo/1381307095/ds>
+      a       void:Dataset , skos:ConceptScheme ;
+      rdfs:label "Taxonomy from project Demo"@en ;
+      dcterms:author 
+	 km-people:JM,
+	 km-people:JuanLlorens;
+      dcterms:contributor 
+	<http://www.josemalvarez.es/foaf.rdf#me> ;	
+      dcterms:description "Demo Vocabulary and Taxonomy" ;
+      dcterms:license <http://opendatacommons.org/licenses/by/1.0/> ;
+      dcterms:modified "2013-10-10"^^xsd:date ;
+      dcterms:publisher km-org:TRC ;
+      dcterms:source <http://threusecompany/km/taxonomy/demo/demo.xls> ;
+      dcterms:title "Demo Vocabulary" ;
+      void:dataDump <http://threusecompany/km/taxonomy/demo/1381307095/demo-1381307095.ttl> ;
+      void:dataDump <http://threusecompany/km/taxonomy/demo/1381307095/demo-1381307095.rdf> ;
+      void:exampleResource
+              <http://threusecompany/km/taxonomy/demo/1381307095/c1> , 
+	      <http://threusecompany/km/taxonomy/demo/1381307095/c11> ;
+      void:uriRegexPattern
+              "http://threusecompany/km/taxonomy/demo/1381307095/.+" ;
+      void:vocabulary skos: , dcterms: , rdfs:, km: ;
+      skos:hasTopConcept  <http://threusecompany/km/taxonomy/demo/1381307095/c1>;
+      foaf:homepage <http://thereusecompany.com> .
+      
+     
+#Concepts
+
+<http://threusecompany/km/demo/1381307095/car> a km-demo:System;
+	dcterms:author  jose-foaf:me;			
+	dcterms:created "2013-10-10"^^xsd:date ;    	
+	dcterms:modified "2013-10-10"^^xsd:date ;
+	rdfs:label "Car"@en;
+	skos:prefLabel "Car"@en;
+	skos:prefLabel "Voiture"@fr;
+	skos:altLabel "Motor"@en;
+	skos:altLabel "Bus"@en;
+	skos:altLabel "Wagon"@fr;
+	skos:hiddenLabel "Auto-bus"@en;
+	skos:notation "c1"^^xsd:string ;
+	dcterms:subject "1"^^xsd:string ;  	
+	km-demo:level "1";
+	km-demo:related-to km-demo:Automative;
+	skos:changeNote "An example of change note."@EN;
+  	skos:editorialNote "An example of editorial note"@EN;
+	skos:historyNote "An example of history note"@EN;
+	skos:scopeNote "An example of scope note"@EN;
+	skos:narrower <http://threusecompany/km/demo/1381307095/car/subsystem/braking>;
+	skos:closeMatch dbpedia-res:Automobile;
+	skos:exactMatch km-demo2:otherCar;
+	skos:inScheme <http://threusecompany/km/demo/1381307095/ds> .
+
+<http://threusecompany/km/demo/1381307095/car/subsystem/braking> a km-demo:SubSystem;
+	dcterms:author  jose-foaf:me;			
+	dcterms:created "2013-10-10"^^xsd:date ;    	
+	dcterms:modified "2013-10-10"^^xsd:date ;
+	rdfs:label "Braking Subsystem"@en;
+	skos:prefLabel "Braking Subsystem"@en;
+	skos:prefLabel "Briser subsystem"@fr;
+	skos:altLabel "The Braking subsystem"@en;
+	skos:altLabel "The Car Breaking subsystem"@en;
+	skos:hiddenLabel "Car Breaking subsystem"@en;
+	skos:notation "sb1"^^xsd:string ;
+	km-demo:level "2";
+	skos:changeNote "An example of change note."@EN;
+  	skos:editorialNote "An example of editorial note"@EN;
+	skos:historyNote "An example of history note"@EN;
+	skos:scopeNote "An example of scope note"@EN;
+	skos:narrower <http://threusecompany/km/demo/1381307095/car/subsystem/braking/pedal>;
+	skos:inScheme <http://threusecompany/km/demo/1381307095/ds> .
+      
+<http://threusecompany/km/demo/1381307095/car/subsystem/braking/pedal> a km-demo:SubSystem;
+	dcterms:author  jose-foaf:me;			
+	dcterms:created "2013-10-10"^^xsd:date ;    	
+	dcterms:modified "2013-10-10"^^xsd:date ;
+	rdfs:label "Pedal of the braking subsystem"@en;
+	skos:prefLabel "Pedal"@en;
+	skos:prefLabel "P�dale"@fr;
+	skos:altLabel "Pedal Component"@en;
+	skos:altLabel "Pedal of the car breaking system"@en;
+	skos:hiddenLabel "Pedal of the car braking system"@en;
+	skos:notation "sb11"^^xsd:string ;
+	km-demo:level "3";
+	skos:changeNote "An example of change note."@EN;
+  	skos:editorialNote "An example of editorial note"@EN;
+	skos:historyNote "An example of history note"@EN;
+	skos:scopeNote "An example of scope note"@EN;
+	skos:inScheme <http://threusecompany/km/demo/1381307095/ds> .
+
+  
+ # People and organizations. Datasets containing these instances are not included in this example
+
+
+  
+ km-people:JM a foaf:Person;
+	foaf:depiction <http://m.c.lnkd.licdn.com/mpr/mpr/shrink_200_200/p/2/000/05a/1f3/181b85c.jpg>;
+	foaf:family_name "Fuentes";
+	foaf:givenname "Jose Miguel";
+	foaf:homepage <http://es.linkedin.com/pub/jose-m-fuentes/1/4b1/a53>;
+	foaf:mbox <mailto:jose.fuentes@reusecompany.com>;
+	foaf:name "Jose Miguel";
+	foaf:nick "JM";
+	foaf:title "Mr.";
+	org:memberOf km-org:TRC;
+	foaf:workInfoHomepage <http://www.reusecompany.com/>;
+	foaf:workplaceHomepage <http://www.reusecompany.com/>;	
+.
+
+ km-people:JuanLlorens a foaf:Person;
+	foaf:depiction <http://www.kr.inf.uc3m.es/JuanLlorens_files/image001.jpg>;
+	foaf:family_name "Llorens";
+	foaf:givenname "Juan";
+	foaf:homepage <http://www.kr.inf.uc3m.es/juanllorens.htm>;
+	foaf:mbox <mailto:juan.llorens@uc3m.es>;
+	foaf:name "Juan";
+	foaf:nick "llorens";
+	foaf:title "Mr.";
+	org:memberOf km-org:UC3M;
+	foaf:workInfoHomepage <http://www.uc3m.es>;
+	foaf:workplaceHomepage <http://kr.inf.uc3m.es>;	
+.
+
+
+
+
+
