@@ -1,5 +1,6 @@
 package es.uc3m.inf.kr.oslcrm.to;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -26,7 +27,7 @@ import es.uc3m.inf.kr.oslcrm.Constants;
 @OslcResourceShape(title = "Requirement management Resource Shape", describes = Constants.TYPE_REQUIREMENT_REQUEST)
 public class RequirementTO {
 
-	
+
 	private String title = "";
 	private String description = "";
 	private String definition = "";	
@@ -35,24 +36,24 @@ public class RequirementTO {
 	private String subject = "";
 	private List<AbstractResource> creator = new LinkedList<AbstractResource>();
 	private List<AbstractResource> contributor = new LinkedList<AbstractResource>();
-	private Date created = null;
-	private Date modified = null;
-	private List<AbstractResource> elaboratedBy;
-	private List<AbstractResource> elaborates;
-	private List<AbstractResource> specifiedBy;
-	private List<AbstractResource> specifies;
-	private List<AbstractResource> affectedBy;
-	private List<AbstractResource> trackedBy;
-	private List<AbstractResource> implementedBy;
-	private List<AbstractResource> validatedBy;
-	private List<AbstractResource> satisfiedBy;
-	private List<AbstractResource> satisfies;
-	private List<AbstractResource> decomposedBy;
-	private List<AbstractResource> decomposes;
-	private List<AbstractResource> constrainedBy;
-	private List<AbstractResource> constraints;
-	private List<AbstractResource> uses;
-	
+	private Date created = Calendar.getInstance().getTime();
+	private Date modified = Calendar.getInstance().getTime();
+	private List<AbstractResource> elaboratedBy = new LinkedList<AbstractResource>();
+	private List<AbstractResource> elaborates = new LinkedList<AbstractResource>();
+	private List<AbstractResource> specifiedBy = new LinkedList<AbstractResource>();
+	private List<AbstractResource> specifies = new LinkedList<AbstractResource>();
+	private List<AbstractResource> affectedBy = new LinkedList<AbstractResource>();
+	private List<AbstractResource> trackedBy = new LinkedList<AbstractResource>();
+	private List<AbstractResource> implementedBy = new LinkedList<AbstractResource>();
+	private List<AbstractResource> validatedBy = new LinkedList<AbstractResource>();
+	private List<AbstractResource> satisfiedBy = new LinkedList<AbstractResource>();
+	private List<AbstractResource> satisfies = new LinkedList<AbstractResource>();
+	private List<AbstractResource> decomposedBy = new LinkedList<AbstractResource>();
+	private List<AbstractResource> decomposes = new LinkedList<AbstractResource>();
+	private List<AbstractResource> constrainedBy = new LinkedList<AbstractResource>();
+	private List<AbstractResource> constraints = new LinkedList<AbstractResource>();
+	private List<AbstractResource> uses = new LinkedList<AbstractResource>();
+
 
 	@OslcDescription("The Requirement definition.")
 	@OslcOccurs(Occurs.ZeroOrOne)
@@ -60,7 +61,7 @@ public class RequirementTO {
 	@OslcRepresentation(Representation.Inline)
 	@OslcValueType(ValueType.String)
 	@OslcRange("xsd:string")
-	@OslcTitle("Definition")
+	@OslcTitle("definition")
 	public String getDefinition() {
 		return definition;
 	}
@@ -95,7 +96,7 @@ public class RequirementTO {
 	@OslcRepresentation(Representation.Inline)
 	@OslcValueType(ValueType.String)
 	@OslcRange("xsd:string")
-	@OslcTitle("title")
+	@OslcTitle("description")
 	public String getDescription() {
 		return description;
 	}
@@ -106,6 +107,14 @@ public class RequirementTO {
 	}
 
 
+
+	@OslcDescription("The Requirement identifier.")
+	@OslcOccurs(Occurs.ZeroOrOne)
+	@OslcPropertyDefinition(Constants.DCTERMS_IDENTIFIER)
+	@OslcRepresentation(Representation.Inline)
+	@OslcValueType(ValueType.String)
+	@OslcRange("xsd:string")
+	@OslcTitle("identifier")
 	public String getIdentifier() {
 		return identifier;
 	}
@@ -116,6 +125,13 @@ public class RequirementTO {
 	}
 
 
+	@OslcDescription("The Requirement title.")
+	@OslcOccurs(Occurs.ZeroOrOne)
+	@OslcPropertyDefinition(Constants.OSLC_CORE_SHORT_TITLE)
+	@OslcRepresentation(Representation.Inline)
+	@OslcValueType(ValueType.String)
+	@OslcRange("xsd:string")
+	@OslcTitle("shortTitle")
 	public String getShortTitle() {
 		return shortTitle;
 	}
@@ -126,6 +142,13 @@ public class RequirementTO {
 	}
 
 
+	@OslcDescription("The Requirement subject.")
+	@OslcOccurs(Occurs.ZeroOrMany)
+	@OslcPropertyDefinition(Constants.DCTERMS_SUBJECT)
+	@OslcRepresentation(Representation.Inline)
+	@OslcValueType(ValueType.String)
+	@OslcRange("xsd:string")
+	@OslcTitle("subject")
 	public String getSubject() {
 		return subject;
 	}
@@ -136,6 +159,13 @@ public class RequirementTO {
 	}
 
 
+	@OslcDescription("The Requirement creator(s).")
+	@OslcOccurs(Occurs.ZeroOrMany)
+	@OslcPropertyDefinition(Constants.DCTERMS_CREATOR)
+	@OslcRepresentation(Representation.Inline)
+	@OslcValueType(ValueType.Resource)
+	@OslcRange(Constants.FOAF_PERSON)
+	@OslcTitle("creator")
 	public List<AbstractResource> getCreator() {
 		return creator;
 	}
@@ -146,6 +176,13 @@ public class RequirementTO {
 	}
 
 
+	@OslcDescription("The Requirement contributor(s).")
+	@OslcOccurs(Occurs.ZeroOrMany)
+	@OslcPropertyDefinition(Constants.DCTERMS_CONTRIBUTOR)
+	@OslcRepresentation(Representation.Inline)
+	@OslcValueType(ValueType.Resource)
+	@OslcRange(Constants.FOAF_PERSON)
+	@OslcTitle("creator")
 	public List<AbstractResource> getContributor() {
 		return contributor;
 	}
@@ -156,6 +193,13 @@ public class RequirementTO {
 	}
 
 
+	@OslcDescription("The date in which the element was created")
+	@OslcName("created")
+	@OslcOccurs(Occurs.ZeroOrOne)
+	@OslcPropertyDefinition(Constants.DCTERMS_CREATED)
+	@OslcRepresentation(Representation.Inline)
+	@OslcValueType(ValueType.LocalResource)
+	@OslcTitle("created")
 	public Date getCreated() {
 		return created;
 	}
@@ -166,6 +210,13 @@ public class RequirementTO {
 	}
 
 
+	@OslcDescription("The date in which the element was modified")
+	@OslcName("modified")
+	@OslcOccurs(Occurs.ZeroOrOne)
+	@OslcPropertyDefinition(Constants.DCTERMS_MODIFIED)
+	@OslcRepresentation(Representation.Inline)
+	@OslcValueType(ValueType.LocalResource)
+	@OslcTitle("modified")
 	public Date getModified() {
 		return modified;
 	}
@@ -176,6 +227,12 @@ public class RequirementTO {
 	}
 
 
+	@OslcDescription("The Requirement elaborated by.")
+	@OslcOccurs(Occurs.ZeroOrMany)
+	@OslcPropertyDefinition(Constants.OSLC_RM_ELABORATED_BY)
+	@OslcRepresentation(Representation.Inline)
+	@OslcValueType(ValueType.Resource)
+	@OslcTitle("elaboratedBy")
 	public List<AbstractResource> getElaboratedBy() {
 		return elaboratedBy;
 	}
@@ -186,6 +243,12 @@ public class RequirementTO {
 	}
 
 
+	@OslcDescription("The Requirement elaborates.")
+	@OslcOccurs(Occurs.ZeroOrMany)
+	@OslcPropertyDefinition(Constants.OSLC_RM_ELABORATES)
+	@OslcRepresentation(Representation.Inline)
+	@OslcValueType(ValueType.Resource)
+	@OslcTitle("elaborates")
 	public List<AbstractResource> getElaborates() {
 		return elaborates;
 	}
@@ -196,6 +259,12 @@ public class RequirementTO {
 	}
 
 
+	@OslcDescription("The Requirement specified by.")
+	@OslcOccurs(Occurs.ZeroOrMany)
+	@OslcPropertyDefinition(Constants.OSLC_RM_SPECIFIED_BY)
+	@OslcRepresentation(Representation.Inline)
+	@OslcValueType(ValueType.Resource)
+	@OslcTitle("specifiedBy")
 	public List<AbstractResource> getSpecifiedBy() {
 		return specifiedBy;
 	}
@@ -206,6 +275,12 @@ public class RequirementTO {
 	}
 
 
+	@OslcDescription("The Requirement specifies.")
+	@OslcOccurs(Occurs.ZeroOrMany)
+	@OslcPropertyDefinition(Constants.OSLC_RM_SPECIFIES)
+	@OslcRepresentation(Representation.Inline)
+	@OslcValueType(ValueType.Resource)
+	@OslcTitle("specifies")
 	public List<AbstractResource> getSpecifies() {
 		return specifies;
 	}
@@ -216,6 +291,12 @@ public class RequirementTO {
 	}
 
 
+	@OslcDescription("The Requirement affected by.")
+	@OslcOccurs(Occurs.ZeroOrMany)
+	@OslcPropertyDefinition(Constants.OSLC_RM_AFFECTED_BY)
+	@OslcRepresentation(Representation.Inline)
+	@OslcValueType(ValueType.Resource)
+	@OslcTitle("affectedBy")
 	public List<AbstractResource> getAffectedBy() {
 		return affectedBy;
 	}
@@ -226,6 +307,12 @@ public class RequirementTO {
 	}
 
 
+	@OslcDescription("The Requirement tracked by.")
+	@OslcOccurs(Occurs.ZeroOrMany)
+	@OslcPropertyDefinition(Constants.OSLC_RM_TRACKED_BY)
+	@OslcRepresentation(Representation.Inline)
+	@OslcValueType(ValueType.Resource)
+	@OslcTitle("trackedBy")
 	public List<AbstractResource> getTrackedBy() {
 		return trackedBy;
 	}
@@ -236,6 +323,12 @@ public class RequirementTO {
 	}
 
 
+	@OslcDescription("The Requirement implemented by.")
+	@OslcOccurs(Occurs.ZeroOrMany)
+	@OslcPropertyDefinition(Constants.OSLC_RM_IMPLEMENTED_BY)
+	@OslcRepresentation(Representation.Inline)
+	@OslcValueType(ValueType.Resource)
+	@OslcTitle("implementedBy")
 	public List<AbstractResource> getImplementedBy() {
 		return implementedBy;
 	}
@@ -246,6 +339,12 @@ public class RequirementTO {
 	}
 
 
+	@OslcDescription("The Requirement validated by.")
+	@OslcOccurs(Occurs.ZeroOrMany)
+	@OslcPropertyDefinition(Constants.OSLC_RM_VALIDATED_BY)
+	@OslcRepresentation(Representation.Inline)
+	@OslcValueType(ValueType.Resource)
+	@OslcTitle("validatedBy")
 	public List<AbstractResource> getValidatedBy() {
 		return validatedBy;
 	}
@@ -256,6 +355,12 @@ public class RequirementTO {
 	}
 
 
+	@OslcDescription("The Requirement satisfied by.")
+	@OslcOccurs(Occurs.ZeroOrMany)
+	@OslcPropertyDefinition(Constants.OSLC_RM_SATISFIED_BY)
+	@OslcRepresentation(Representation.Inline)
+	@OslcValueType(ValueType.Resource)
+	@OslcTitle("satisfiedBy")
 	public List<AbstractResource> getSatisfiedBy() {
 		return satisfiedBy;
 	}
@@ -266,6 +371,13 @@ public class RequirementTO {
 	}
 
 
+
+	@OslcDescription("The Requirement satisfies.")
+	@OslcOccurs(Occurs.ZeroOrMany)
+	@OslcPropertyDefinition(Constants.OSLC_RM_SATISFIES)
+	@OslcRepresentation(Representation.Inline)
+	@OslcValueType(ValueType.Resource)
+	@OslcTitle("satisfies")
 	public List<AbstractResource> getSatisfies() {
 		return satisfies;
 	}
@@ -276,6 +388,12 @@ public class RequirementTO {
 	}
 
 
+	@OslcDescription("The Requirement decomposed by.")
+	@OslcOccurs(Occurs.ZeroOrMany)
+	@OslcPropertyDefinition(Constants.OSLC_RM_DECOMPOSED_BY)
+	@OslcRepresentation(Representation.Inline)
+	@OslcValueType(ValueType.Resource)
+	@OslcTitle("decomposedBy")
 	public List<AbstractResource> getDecomposedBy() {
 		return decomposedBy;
 	}
@@ -286,6 +404,12 @@ public class RequirementTO {
 	}
 
 
+	@OslcDescription("The Requirement decomposes.")
+	@OslcOccurs(Occurs.ZeroOrMany)
+	@OslcPropertyDefinition(Constants.OSLC_RM_DECOMPOSES)
+	@OslcRepresentation(Representation.Inline)
+	@OslcValueType(ValueType.Resource)
+	@OslcTitle("decomposes")
 	public List<AbstractResource> getDecomposes() {
 		return decomposes;
 	}
@@ -296,6 +420,12 @@ public class RequirementTO {
 	}
 
 
+	@OslcDescription("The Requirement constrained by.")
+	@OslcOccurs(Occurs.ZeroOrMany)
+	@OslcPropertyDefinition(Constants.OSLC_RM_CONSTRAINED_BY)
+	@OslcRepresentation(Representation.Inline)
+	@OslcValueType(ValueType.Resource)
+	@OslcTitle("constrainedBy")
 	public List<AbstractResource> getConstrainedBy() {
 		return constrainedBy;
 	}
@@ -306,6 +436,12 @@ public class RequirementTO {
 	}
 
 
+	@OslcDescription("The Requirement constraints.")
+	@OslcOccurs(Occurs.ZeroOrMany)
+	@OslcPropertyDefinition(Constants.OSLC_RM_CONSTRAINTS)
+	@OslcRepresentation(Representation.Inline)
+	@OslcValueType(ValueType.Resource)
+	@OslcTitle("constraints")
 	public List<AbstractResource> getConstraints() {
 		return constraints;
 	}
@@ -316,6 +452,12 @@ public class RequirementTO {
 	}
 
 
+	@OslcDescription("The Requirement uses.")
+	@OslcOccurs(Occurs.ZeroOrMany)
+	@OslcPropertyDefinition(Constants.OSLC_RM_USES)
+	@OslcRepresentation(Representation.Inline)
+	@OslcValueType(ValueType.Resource)
+	@OslcTitle("uses")
 	public List<AbstractResource> getUses() {
 		return uses;
 	}
@@ -325,6 +467,6 @@ public class RequirementTO {
 		this.uses = uses;
 	}
 
-	
+
 
 }
