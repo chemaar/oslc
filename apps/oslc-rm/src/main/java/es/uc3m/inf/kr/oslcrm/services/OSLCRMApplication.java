@@ -72,6 +72,7 @@ public class OSLCRMApplication extends OslcWinkApplication {
             RESOURCE_CLASSES.add(DummyServiceProviderService.class);
             RESOURCE_CLASSES.add(ServiceProviderCatalogService.class);
             RESOURCE_CLASSES.add(KRVocabularyManagementService.class);
+            RESOURCE_CLASSES.add(RequirementManagementService.class);
             
 
 

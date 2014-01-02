@@ -36,33 +36,34 @@ import org.eclipse.lyo.oslc4j.core.model.OslcMediaType;
 import es.uc3m.inf.kr.common.utils.ApplicationContextLocator;
 import es.uc3m.inf.kr.dao.VocabularyDAO;
 import es.uc3m.inf.kr.oslcrm.Constants;
+import es.uc3m.inf.kr.oslcrm.appserv.RequirementApplicationService;
 import es.uc3m.inf.kr.oslcrm.to.Person;
+import es.uc3m.inf.kr.oslcrm.to.RequirementTO;
 import es.uc3m.inf.kr.oslcrm.to.VocabularyTO;
 
 @OslcService(Constants.REQUIREMENTS_MANAGEMENT_DOMAIN)
-@Path("vocabularyManagement")
+@Path("requirementManagement")
 //@Path("{productId}/requirementManagement")
-public class KRVocabularyManagementService {
+public class RequirementManagementService {
 
 	@Context private HttpServletRequest httpServletRequest;
 	@Context private HttpServletResponse httpServletResponse;
 	@Context private UriInfo uriInfo;
-	VocabularyDAO dao;
+	RequirementApplicationService appServ;
 
-	public KRVocabularyManagementService(){
+	public RequirementManagementService(){
 		super();
-		dao = (VocabularyDAO) ApplicationContextLocator.
-				getApplicationContext().getBean(VocabularyDAO.class.getSimpleName());
+		this.appServ = new RequirementApplicationService();
+
 	}
 
 	@OslcDialogs(
 			{
 				@OslcDialog
 				(
-						title = "Vocabulary Management Selection Dialog",
-						label = "Vocabulary Management Selection Dialog",
-						//uri = "/{productId}/requirementManagement/selector",
-						uri = "/vocabularyManagement/selector",
+						title = "Requirement Management Selection Dialog",
+						label = "Requirement Management Selection Dialog",
+						uri = "/requirementManagement/selector/{requirementId}",
 						hintWidth = "525px",
 						hintHeight = "325px",
 						resourceTypes = {Constants.TYPE_REQUIREMENT_REQUEST},
@@ -72,58 +73,36 @@ public class KRVocabularyManagementService {
 			})
 	@OslcQueryCapability
 	(
-			title = "Vocabulary Management Query Capability",
-			label = "Vocabulary Management Catalog Query",
+			title = "Requirement Management Query Capability",
+			label = "Requirement Management Catalog Query",
 			resourceShape = OslcConstants.PATH_RESOURCE_SHAPES + "/" + Constants.PATH_VOCABULARY_REQUEST,
 			resourceTypes = {Constants.TYPE_REQUIREMENT_REQUEST},
 			usages = {OslcConstants.OSLC_USAGE_DEFAULT}
 			)
 
 	@GET
-	@Path("cpv")
 	@Produces({OslcMediaType.APPLICATION_RDF_XML, OslcMediaType.APPLICATION_XML, OslcMediaType.APPLICATION_JSON})
-	public List<VocabularyTO> getCPVConcepts() throws IOException, ServletException {
-		try {
-			return dao.getTerms();
-		} catch (URISyntaxException e) {
-			 throw new WebApplicationException(Response.Status.INTERNAL_SERVER_ERROR);
-		}
-
-
-	}
-	
-	@GET
-	@Produces({OslcMediaType.APPLICATION_RDF_XML, OslcMediaType.APPLICATION_XML, OslcMediaType.APPLICATION_JSON})
-	public List<VocabularyTO> getVocabularyConcepts() throws IOException, ServletException {
-		try {
-			List<VocabularyTO> elements = new LinkedList<VocabularyTO>();
-			
-			for(int i = 0; i<10;i++){
-				elements.add(createElement(i));
-			}
-
-			return elements;
-		} catch (URISyntaxException e) {
-			 throw new WebApplicationException(Response.Status.INTERNAL_SERVER_ERROR);
-		}
+	public List<RequirementTO> getRequirements() throws IOException, ServletException {
+		return this.appServ.getRequirements();
 
 
 	}
 	
 
+
 	@GET
-	@Path("cpv/{conceptID}")
+	@Path("get/{requirementID}")
 	@Produces({OslcMediaType.APPLICATION_RDF_XML, OslcMediaType.APPLICATION_XML, OslcMediaType.APPLICATION_JSON})
-	public VocabularyTO getVocabularyConcepts(@PathParam("conceptID") final String conceptId) throws IOException, ServletException {
-		System.out.println("TRYING TO GET "+conceptId);
-		 return dao.getVocabularyElement(conceptId);
+	public RequirementTO getRequirement(@PathParam("requirementID") final String requirementId) throws IOException, ServletException {
+		 return this.appServ.getRequirement(requirementId);
 	}
 	
 
 
     @GET
+    @Path("query")
     @Produces({OslcMediaType.APPLICATION_RDF_XML, OslcMediaType.APPLICATION_XML, OslcMediaType.APPLICATION_JSON})
-    public List<VocabularyTO> getVocabularyElement       (@PathParam("conceptID")         final String conceptId,
+    public List<RequirementTO> getRequirementsByQuery       (@PathParam("requirementId")         final String requirementId,
     		                                 	     	 @QueryParam("oslc.where")       final String where,
     		                                 		     @QueryParam("oslc.select")      final String select,
     		                                 		     @QueryParam("oslc.prefix")      final String prefix,
@@ -176,12 +155,8 @@ public class KRVocabularyManagementService {
         Map<String, Object> propMap =
             QueryUtils.invertSelectedProperties(properties);
         
-        List<VocabularyTO> results;
-		try {
-			results = dao.getTerms();
-		} catch (URISyntaxException e1) {
-			throw new WebApplicationException(Response.Status.BAD_REQUEST);
-		}
+        List<RequirementTO> results;
+		results = this.appServ.getRequirements();
 
         
         Object nextPageAttr = httpServletRequest.getAttribute(Constants.NEXT_PAGE);
@@ -232,28 +207,5 @@ public class KRVocabularyManagementService {
     }  
     
     
-	public static VocabularyTO createElement(int i) throws URISyntaxException{
-		VocabularyTO vocabularyElement = new VocabularyTO();
-		vocabularyElement.setAbout(new URI("http://threusecompany/km/taxonomy/demo/1381307095/c"+i));	
-		vocabularyElement.setDefinition("My definition");
-		Person contributor = new Person();
-		contributor.setName("Jose");
-		contributor.setMbox("mailto:josemaria.alvarez@uc3m.es");
-		contributor.setUri(new URI("http://josemalvarez.es/foaf.rdf#me"));
-		vocabularyElement.addContributor(contributor );
-		vocabularyElement.setCreationDate(GregorianCalendar.getInstance().getTime());
-		vocabularyElement.setModifiedDate(GregorianCalendar.getInstance().getTime());
-		vocabularyElement.setRDFSLabel("RDFS Label");
-		vocabularyElement.setPrefLabel("Preferred Label");
-		vocabularyElement.setAltLabel("Alt Label");
-		vocabularyElement.setHiddenLabel("Hidden Label");
-		vocabularyElement.setChangeNote("Change note");
-		vocabularyElement.setEditorialNote("Editorial Note");
-		vocabularyElement.setHistoryNote("History Note");
-		vocabularyElement.setScopeNote("Scope Note");
-		vocabularyElement.setNotation("Notation");
-		vocabularyElement.setLevel("Level");
-		vocabularyElement.setSubject("Subject");
-		return vocabularyElement;
-	}
+
 }

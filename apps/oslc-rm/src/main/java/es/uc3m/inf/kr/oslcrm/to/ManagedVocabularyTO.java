@@ -34,7 +34,7 @@ import es.uc3m.inf.kr.oslcrm.SKOS;
 //OSLC4J should give an rdf:type of oslc_cm:ChangeRequest
 @OslcNamespace(Constants.REQUIREMENTS_MANAGEMENT_NAMESPACE)
 @OslcName("VocabularyManagement") 
-@OslcResourceShape(title = "Vocabulary management Resource Shape", describes = Constants.TYPE_CHANGE_REQUEST)
+@OslcResourceShape(title = "Vocabulary management Resource Shape", describes = Constants.TYPE_REQUIREMENT_REQUEST)
 public class ManagedVocabularyTO extends AbstractResource{
 /**
  * <http://threusecompany/km/taxonomy/demo/1381307095/c1>

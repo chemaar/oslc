@@ -22,8 +22,8 @@ public interface Constants{
     public static String TRC_NAMESPACE					 = "http://thereusecompany.com/ontology/";
     
 
-    public static String CHANGE_REQUEST             = "VocabularyManagement";
-    public static String TYPE_CHANGE_REQUEST        = REQUIREMENTS_MANAGEMENT_NAMESPACE + CHANGE_REQUEST;
+    public static String REQUIREMENT_REQUEST             = "RequirementManagement";
+    public static String TYPE_REQUIREMENT_REQUEST        = REQUIREMENTS_MANAGEMENT_NAMESPACE + REQUIREMENT_REQUEST;
     public static String TYPE_CHANGE_SET            = SOFTWARE_CONFIGURATION_MANAGEMENT_NAMESPACE + "ChangeSet";
     public static String TYPE_DISCUSSION            = OslcConstants.OSLC_CORE_NAMESPACE + "Discussion";
   
@@ -49,6 +49,14 @@ public interface Constants{
     public static final String HDR_OSLC_VERSION = "OSLC-Core-Version";
     
     public static final String NEXT_PAGE = "org.eclipse.lyo.oslc4j.bugzilla.NextPage";
+    
+    /**Dublin Core**/
+    
+    public static final String DCTERMS = "http://purl.org/dc/terms/";
+    public static final String DCTERMS_TITLE = "http://purl.org/dc/terms/title";
+    /**OSLC Core**/
+    
+    /**OSLC RM**/
     
 
 }
