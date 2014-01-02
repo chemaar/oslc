@@ -67,7 +67,7 @@ public class KnowledgeManagementService {
 	@GET
 	@Path("listClasses")
 	@Produces({OslcMediaType.APPLICATION_RDF_XML, OslcMediaType.APPLICATION_XML, OslcMediaType.APPLICATION_JSON})
-	public List<ResourceTO> getCPVConcepts() throws IOException, ServletException {
+	public List<ResourceTO> listClasses() throws IOException, ServletException {
 		try {
 			return this.appServ.listClasses();
 		} catch (RuntimeException e) {
@@ -78,6 +78,54 @@ public class KnowledgeManagementService {
 	}
 
 
+	@GET
+	@Path("listProperties")
+	@Produces({OslcMediaType.APPLICATION_RDF_XML, OslcMediaType.APPLICATION_XML, OslcMediaType.APPLICATION_JSON})
+	public List<ResourceTO> listProperties() throws IOException, ServletException {
+		try {
+			return this.appServ.listProperties();
+		} catch (RuntimeException e) {
+			 throw new WebApplicationException(Response.Status.INTERNAL_SERVER_ERROR);
+		}
 
+	}
+	
+	@GET
+	@Path("listInstances")
+	@Produces({OslcMediaType.APPLICATION_RDF_XML, OslcMediaType.APPLICATION_XML, OslcMediaType.APPLICATION_JSON})
+	public List<ResourceTO> listInstances() throws IOException, ServletException {
+		try {
+			return this.appServ.listInstances();
+		} catch (RuntimeException e) {
+			 throw new WebApplicationException(Response.Status.INTERNAL_SERVER_ERROR);
+		}
+
+	}
+	
+	@GET
+	@Path("listInstancesOf")
+	@Produces({OslcMediaType.APPLICATION_RDF_XML, OslcMediaType.APPLICATION_XML, OslcMediaType.APPLICATION_JSON})
+	public List<ResourceTO> listInstancesOf(String uri) throws IOException, ServletException {
+		try {
+			return this.appServ.listInstancesOf(new ResourceTO(uri));
+		} catch (RuntimeException e) {
+			 throw new WebApplicationException(Response.Status.INTERNAL_SERVER_ERROR);
+		}
+
+	}
+	
+	
+	@GET
+	@Path("listPropertiesOf")
+	@Produces({OslcMediaType.APPLICATION_RDF_XML, OslcMediaType.APPLICATION_XML, OslcMediaType.APPLICATION_JSON})
+	public List<ResourceTO> listPropertiesOf(String uriClazz) throws IOException, ServletException {
+		try {
+			return this.appServ.listPropertiesOf(new ResourceTO(uriClazz));
+		} catch (RuntimeException e) {
+			 throw new WebApplicationException(Response.Status.INTERNAL_SERVER_ERROR);
+		}
+
+	}
+	
  
 }

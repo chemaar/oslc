@@ -82,7 +82,10 @@ public class ResourceTO extends AbstractResource{
                 super();
                 // TODO Auto-generated constructor stub
         }
-        @Override
+        public ResourceTO(String uri) {
+        	this.uri = uri;
+		}
+		@Override
         public String toString() {
                 return "ResourceTO [uri=" + uri + ", label=" + label + ", description="
                                 + description + ", type=" + type + "]";
