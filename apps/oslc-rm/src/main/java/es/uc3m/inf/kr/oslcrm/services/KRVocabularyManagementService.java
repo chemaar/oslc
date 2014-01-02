@@ -40,7 +40,7 @@ import es.uc3m.inf.kr.oslcrm.to.Person;
 import es.uc3m.inf.kr.oslcrm.to.VocabularyTO;
 
 @OslcService(Constants.VOCABULARY_MANAGEMENT_DOMAIN)
-@Path("vocabularyManagement")
+@Path("vm")
 public class KRVocabularyManagementService {
 
 	@Context private HttpServletRequest httpServletRequest;
@@ -60,7 +60,7 @@ public class KRVocabularyManagementService {
 				(
 						title = "Vocabulary Management Selection Dialog",
 						label = "Vocabulary Management Selection Dialog",
-						uri = "/vocabularyManagement/selector",
+						uri = "/vm/selector",
 						hintWidth = "525px",
 						hintHeight = "325px",
 						resourceTypes = {Constants.TYPE_REQUIREMENT_REQUEST},

@@ -60,13 +60,13 @@ public class ManagedVocabularyTO extends AbstractResource{
 	        this.authors.add(contributor);
 	    }
 	   
-	    @OslcDescription("The person(s) who are responsible for the work needed to manage a requiremen.")
-	    @OslcName("author")
-	    @OslcPropertyDefinition(Constants.DCTERMS_CREATOR)
-	    @OslcRepresentation(Representation.Inline)
-	    @OslcValueType(ValueType.LocalResource)
-	    @OslcRange(Constants.FOAF_PERSON)
-	    @OslcTitle("Contributors")
+	   @OslcDescription("The person(s) who are responsible for the work needed to manage a requirement.")
+       @OslcName("author")
+       @OslcPropertyDefinition(OslcConstants.DCTERMS_NAMESPACE + "author")
+       @OslcRepresentation(Representation.Inline)
+       @OslcValueType(ValueType.LocalResource)
+       @OslcRange(Constants.FOAF_PERSON)
+       @OslcTitle("Contributors")
 	    public List<Person> getAuthors(){
 	        return authors;
 	    }

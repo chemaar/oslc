@@ -42,7 +42,7 @@ import es.uc3m.inf.kr.oslcrm.to.RequirementTO;
 import es.uc3m.inf.kr.oslcrm.to.VocabularyTO;
 
 @OslcService(Constants.REQUIREMENTS_MANAGEMENT_DOMAIN)
-@Path("requirementManagement")
+@Path("rm")
 public class RequirementManagementService {
 
 	@Context private HttpServletRequest httpServletRequest;
@@ -62,7 +62,7 @@ public class RequirementManagementService {
 				(
 						title = "Requirement Management Selection Dialog",
 						label = "Requirement Management Selection Dialog",
-						uri = "/requirementManagement/selector",
+						uri = "/rm/selector",
 						hintWidth = "525px",
 						hintHeight = "325px",
 						resourceTypes = {Constants.TYPE_REQUIREMENT_REQUEST},
