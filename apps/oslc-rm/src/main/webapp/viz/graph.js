@@ -1,30 +1,4 @@
-<!DOCTYPE html>
-<html>
-<meta charset="utf-8">
-<style>
-
-.node circle {
-  cursor: pointer;
-  stroke: #3182bd;
-  stroke-width: 1.5px;
-}
-
-.node text {
-  font: 10px sans-serif;
-  pointer-events: none;
-  text-anchor: middle;
-}
-
-line.link {
-  fill: none;
-  stroke: #9ecae1;
-  stroke-width: 1.5px;
-}
-
-</style>
-<body>
-<script src="http://d3js.org/d3.v3.min.js"></script>
-<script>
+function loadGraph(){
 
 var width = 960,
     height = 500,
@@ -37,7 +11,7 @@ var force = d3.layout.force()
     .size([width, height])
     .on("tick", tick);
 
-var svg = d3.select("body").append("svg")
+var svg = d3.select("#graph-container").append("svg")
     .attr("width", width)
     .attr("height", height);
 
@@ -147,7 +121,4 @@ function flatten(root) {
   recurse(root);
   return nodes;
 }
-
-</script>
-</body>
-</html>
+}

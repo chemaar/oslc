@@ -1,13 +1,42 @@
-
 <html>
 <head>
-    <title>The OSLC RM by UC3M-Contact</title>
+    <title>The OSLC RM by UC3M-Demo</title>
     <meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Bootstrap -->
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    
+	<style>
+	
+	.node {
+	  cursor: pointer;
+	}
+	
+	.node circle {
+	  fill: #fff;
+	  stroke: steelblue;
+	  stroke-width: 1.5px;
+	}
+	
+	.node text {
+	  font: 10px sans-serif;
+	}
+	
+	.link {
+	  fill: none;
+	  stroke: #ccc;
+	  stroke-width: 1.5px;
+	}
+	
+	</style>
+	
+	<script src="http://d3js.org/d3.v3.min.js"></script>
+	<script src="viz/tree.js"></script>
+	<script src="viz/graph.js"></script>
+	
+
   </head>
-  <body>
+  <body onload="loadTree(); loadGraph();">
     <script src="http://code.jquery.com/jquery.js"></script>
 
     <script src="bootstrap/js/bootstrap.min.js"></script>
@@ -24,10 +53,10 @@
                 <li><a href="index.jsp">Home</a></li>
                 <li><a href="#">Projects</a></li>
                 <li><a href="services.html">Services</a></li>
-                <li><a href="demo.html">Demo</a></li>
+                <li class="active"><a href="#">Demo</a></li>
                 <li><a href="#">Downloads</a></li>
                 <li><a href="#">About</a></li>
-                <li class="active"><a href="#">Contact</a></li>
+                <li><a href="contact.html">Contact</a></li>
               </ul>            
             </div>
           </div>
@@ -36,44 +65,27 @@
 
       <!-- Jumbotron -->
       <div class="jumbotron">
-        <h1>OSLC-RM roster...</h1>
-        <p class="lead"><em>"A team will always appreciate a great individual if he's willing to sacrifice for the group."</em> Kareem Abdul-Jabbar</p>
-             <a class="btn btn-large btn-success" href="./demo.html">Test the Demo Services</a>
+        <h1>OSLC-RM demo services...</h1>
+        <p class="lead">A visualization of the Product Breakdown Structure as a <a hre="#tree">tree</a> and <a href="#graph">graph</a>.</p>
       </div>
 
       <hr>
-	<h2>Main Contact</h2>
-        <ul>
-	<li>Name: <a href="http://www.josemalvarez.es">Dr. Jose María Alvarez-Rodríguez</a></li>
-	<li>Position: Visiting Professor at the <a href="http://www.uc3m.es">Carlos III University of Madrid</a> and member of the <a href="http://www.kf.inf.uc3m.es">Knowledge Reuse Research Group</a>.</li>
-	<li>Phone:  +30 2310 253477</li>
-	<li>Affiliation: <a href="http://www.inf.uc3m.es">Department of Informatics</a>, Avd. de la Universidad, 30, 28911, Leganés, Madrid, Spain.</li>
-	<li><a href="mailto:josemaria.alvarez_at_uc3m.es">Contact me at UC3M</a></li>
-	
-	</ul>
+	<h2><a name="tree">Tree</a></h2>
+	<p>This visualization has been generated requesting the JSON data to the server through the next query:</p>
+	<p></p>
+	<div id="tree-container" style="text-align:center">
+	</div>
+		
       <hr>
-<h2>Supervisors</h2>
-   
-   <ul>
-	<li>Name: <a href="http://www.jmgomez.net/">Prof. Dr. Juan Miguel Gómez-Berbís</a></li>
-	<li>Position: Associate Professor at the <a href="http://www.uc3m.es">Carlos III University of Madrid</a> and member of the <a href="http://www.kf.inf.uc3m.es">Knowledge Reuse Research Group</a>.</li>
-	<li>Affiliation: <a href="http://www.inf.uc3m.es">Department of Informatics</a>, Avd. de la Universidad, 30, 28911, Leganés, Madrid, Spain.</li>
-	</ul>
+      
+    <h2><a name="graph">Graph</a></h2>
+	<p>This visualization has been also generated requesting the JSON data to the server through the next query:</p>
+	<p></p>
 	
-	<ul>
-	<li>Name: <a href="http://www.kr.inf.uc3m.es/juanllorens.htm">Prof. Dr. Juan Llorens</a></li>
-	<li>Position: Professor at the <a href="http://www.uc3m.es">Carlos III University of Madrid</a> and Head of the <a href="http://www.kf.inf.uc3m.es">Knowledge Reuse Research Group</a>.</li>
-	<li>Affiliation: <a href="http://www.inf.uc3m.es">Department of Informatics</a>, Avd. de la Universidad, 30, 28911, Leganés, Madrid, Spain.</li>
-	</ul>
+      <div id="graph-container" style="text-align:center">
+	  </div>
 	
-	
-     <hr>
-<h2>Knowledge Reuse Research Group</h2>
-<ul>
-      	<li><a href="http://www.kr.inf.uc3m.es/">KR Members</a></li>
-</ul>
-      <hr>
-
+		<hr>
         <div class="footer">
 	        <p style="text-align:center">
 	        	<a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">

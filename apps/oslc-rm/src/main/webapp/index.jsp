@@ -22,6 +22,7 @@
                 <li class="active"><a href="#">Home</a></li>
                 <li><a href="#">Projects</a></li>
                 <li><a href="services.html">Services</a></li>
+                <li><a href="demo.html">Demo</a></li>
                 <li><a href="#">Downloads</a></li>
                 <li><a href="#">About</a></li>
                 <li><a href="contact.html">Contact</a></li>
@@ -46,8 +47,8 @@
         <div class="span4">
           <h2>People</h2>
           <ul>
-          	<li><a href="http://www.josemalvarez.es">Jose María Alvarez Rodríguez</a> (Visiting Professor)</li>
-          	<li><a href="http://www.jmgomez.net/">Juan Miguel Gómez-Berbís</a> (Associate Professor)</li>
+          	<li><a href="http://www.josemalvarez.es">Jose Marï¿½a Alvarez Rodrï¿½guez</a> (Visiting Professor)</li>
+          	<li><a href="http://www.jmgomez.net/">Juan Miguel Gï¿½mez-Berbï¿½s</a> (Associate Professor)</li>
           	<li><a href="http://www.kr.inf.uc3m.es/juanllorens.htm">Juan Llorens</a> (Professor and Head of the Research Group)</li>
           </ul>
           <p><a class="btn" href="#">View details &raquo;</a></p>
@@ -78,7 +79,7 @@
         		<span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">The OSLC RM 
         		as part of a <a href="http://kr.inf.uc3m.es">Knowledge Reuse</a> project</span> by 
         		<span xmlns:cc="http://creativecommons.org/ns#" property="cc:attributionName">
-        		<a href="http://www.josemalvarez.es">Jose María Alvarez-Rodríguez</a> and 
+        		<a href="http://www.josemalvarez.es">Jose Marï¿½a Alvarez-Rodrï¿½guez</a> and 
         		<a href="http://www.kr.inf.uc3m.es">the Knowledge Reuse Group</a></span> 
         		is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>.
         </p>
