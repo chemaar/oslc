@@ -2,9 +2,13 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>es.uc3m.inf.kr</groupId>
-	<artifactId>oslc-qm</artifactId>
+	<artifactId>oslc-km</artifactId>
 	<packaging>war</packaging>
 	<version>0.0.1-SNAPSHOT</version>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
 
 	<dependencies>
 		<dependency>
@@ -85,7 +89,43 @@
 			<artifactId>oslc-query</artifactId>
 			<version>[1.1,)</version>
 		</dependency>
+
+		<dependency>
+			<groupId>org.neo4j</groupId>
+			<artifactId>neo4j-enterprise</artifactId>
+			<version>2.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.openrdf.sesame</groupId>
+			<artifactId>sesame-rio-turtle</artifactId>
+			<version>2.7.1</version>
+		</dependency>
+
+
+		<dependency>
+			<groupId>org.mapdb</groupId>
+			<artifactId>mapdb</artifactId>
+			<version>0.9.2</version>
+		</dependency>
+
 	</dependencies>
+
+
+	<repositories>
+		<repository>
+			<id>neo4jRepo</id>
+			<url>http://m2.neo4j.org</url>
+		</repository>
+		<repository>
+			<id>Sun</id>
+			<url>http://download.java.net/maven/2</url>
+		</repository>
+		<repository>
+			<id>sesame</id>
+			<url>http://repo.aduna-software.org/maven2/releases/</url>
+		</repository>
+	</repositories>
+
 
 	<build>
 		<finalName>oslc-qm</finalName>
