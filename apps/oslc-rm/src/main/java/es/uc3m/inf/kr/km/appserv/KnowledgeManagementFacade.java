@@ -353,6 +353,7 @@ public class KnowledgeManagementFacade{
 			if(object.isLiteral()){
 				child.setName(object.asLiteral().getString()+(!object.asLiteral().getLanguage().equalsIgnoreCase("")?"@"+object.asLiteral().getLanguage():""));
 			}else if (object.isResource()){
+				child.setName(stmt.getPredicate().getURI());
 				child.getChildren().add(this.createGraph(object.asResource().getURI()));
 			}else if (object.isURIResource()){
 				

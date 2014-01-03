@@ -26,6 +26,17 @@ import java.util.Set;
 
 
 
+
+
+
+
+
+
+import org.codehaus.jackson.jaxrs.JacksonJaxbJsonProvider;
+import org.codehaus.jackson.map.AnnotationIntrospector;
+import org.codehaus.jackson.map.ObjectMapper;
+import org.codehaus.jackson.map.introspect.JacksonAnnotationIntrospector;
+import org.codehaus.jackson.xc.JaxbAnnotationIntrospector;
 import org.eclipse.lyo.oslc4j.application.OslcWinkApplication;
 import org.eclipse.lyo.oslc4j.core.exception.OslcCoreApplicationException;
 import org.eclipse.lyo.oslc4j.core.model.AllowedValues;
@@ -52,67 +63,96 @@ import es.uc3m.inf.kr.rm.services.rest.GraphServiceRest;
 
 public class OSLCRMApplication extends OslcWinkApplication {
 
-    private static final Set<Class<?>>         RESOURCE_CLASSES                          = new HashSet<Class<?>>();
-    private static final Map<String, Class<?>> RESOURCE_SHAPE_PATH_TO_RESOURCE_CLASS_MAP = new HashMap<String, Class<?>>();
+	private static final Set<Class<?>>         RESOURCE_CLASSES                          = new HashSet<Class<?>>();
+	private static final Map<String, Class<?>> RESOURCE_SHAPE_PATH_TO_RESOURCE_CLASS_MAP = new HashMap<String, Class<?>>();
 
-    static
-    {
-    	try
-    	{
-    		RESOURCE_CLASSES.addAll(JenaProvidersRegistry.getProviders());
-    		RESOURCE_CLASSES.addAll(Json4JProvidersRegistry.getProviders());
-    	//	RESOURCE_CLASSES.add(BugzillaChangeRequestService.class);
-    	//	RESOURCE_CLASSES.add(Person.class);
-    		
-    		RESOURCE_CLASSES.add(Class.forName("org.eclipse.lyo.server.oauth.webapp.services.ConsumersService"));
-    		RESOURCE_CLASSES.add(Class.forName("org.eclipse.lyo.server.oauth.webapp.services.OAuthService"));
-    		
-    		//Catalog resources.   
-    		
-         //   RESOURCE_CLASSES.add(ServiceProviderCatalogService.class);
-            RESOURCE_CLASSES.add(ServiceProviderService.class);
-            RESOURCE_CLASSES.add(HelloWorldResource.class);
-            RESOURCE_CLASSES.add(DummyServiceProviderService.class);
-            RESOURCE_CLASSES.add(ServiceProviderCatalogService.class);
-            RESOURCE_CLASSES.add(KRVocabularyManagementService.class);
-            RESOURCE_CLASSES.add(RequirementManagementService.class);
-            RESOURCE_CLASSES.add(KnowledgeManagementService.class);
-            RESOURCE_CLASSES.add(GraphServiceRest.class);
-            
-            
+	static
+	{
+		try
+		{
+			RESOURCE_CLASSES.addAll(JenaProvidersRegistry.getProviders());
+			RESOURCE_CLASSES.addAll(Json4JProvidersRegistry.getProviders());
+			//	RESOURCE_CLASSES.add(BugzillaChangeRequestService.class);
+			//	RESOURCE_CLASSES.add(Person.class);
+
+			RESOURCE_CLASSES.add(Class.forName("org.eclipse.lyo.server.oauth.webapp.services.ConsumersService"));
+			RESOURCE_CLASSES.add(Class.forName("org.eclipse.lyo.server.oauth.webapp.services.OAuthService"));
+
+			//Catalog resources.   
+
+			//   RESOURCE_CLASSES.add(ServiceProviderCatalogService.class);
+			RESOURCE_CLASSES.add(ServiceProviderService.class);
+			RESOURCE_CLASSES.add(HelloWorldResource.class);
+			RESOURCE_CLASSES.add(DummyServiceProviderService.class);
+			RESOURCE_CLASSES.add(ServiceProviderCatalogService.class);
+			RESOURCE_CLASSES.add(KRVocabularyManagementService.class);
+			RESOURCE_CLASSES.add(RequirementManagementService.class);
+			RESOURCE_CLASSES.add(KnowledgeManagementService.class);
+			RESOURCE_CLASSES.add(GraphServiceRest.class);
 
 
-            RESOURCE_SHAPE_PATH_TO_RESOURCE_CLASS_MAP.put(OslcConstants.PATH_ALLOWED_VALUES,           AllowedValues.class);
-            RESOURCE_SHAPE_PATH_TO_RESOURCE_CLASS_MAP.put(OslcConstants.PATH_COMPACT,                  Compact.class);
-            RESOURCE_SHAPE_PATH_TO_RESOURCE_CLASS_MAP.put(OslcConstants.PATH_CREATION_FACTORY,         CreationFactory.class);
-            RESOURCE_SHAPE_PATH_TO_RESOURCE_CLASS_MAP.put(OslcConstants.PATH_DIALOG,                   Dialog.class);
-            RESOURCE_SHAPE_PATH_TO_RESOURCE_CLASS_MAP.put(OslcConstants.PATH_ERROR,                    Error.class);
-            RESOURCE_SHAPE_PATH_TO_RESOURCE_CLASS_MAP.put(OslcConstants.PATH_EXTENDED_ERROR,           ExtendedError.class);
-            RESOURCE_SHAPE_PATH_TO_RESOURCE_CLASS_MAP.put(OslcConstants.PATH_OAUTH_CONFIGURATION,      OAuthConfiguration.class);
-            RESOURCE_SHAPE_PATH_TO_RESOURCE_CLASS_MAP.put(OslcConstants.PATH_PREFIX_DEFINITION,        PrefixDefinition.class);
-            RESOURCE_SHAPE_PATH_TO_RESOURCE_CLASS_MAP.put(OslcConstants.PATH_PREVIEW,                  Preview.class);
-            RESOURCE_SHAPE_PATH_TO_RESOURCE_CLASS_MAP.put(OslcConstants.PATH_PROPERTY,                 Property.class);
-            RESOURCE_SHAPE_PATH_TO_RESOURCE_CLASS_MAP.put(OslcConstants.PATH_PUBLISHER,                Publisher.class);
-            RESOURCE_SHAPE_PATH_TO_RESOURCE_CLASS_MAP.put(OslcConstants.PATH_QUERY_CAPABILITY,         QueryCapability.class);
-            RESOURCE_SHAPE_PATH_TO_RESOURCE_CLASS_MAP.put(OslcConstants.PATH_RESOURCE_SHAPE,           ResourceShape.class);
-            RESOURCE_SHAPE_PATH_TO_RESOURCE_CLASS_MAP.put(OslcConstants.PATH_SERVICE,                  Service.class);
-            RESOURCE_SHAPE_PATH_TO_RESOURCE_CLASS_MAP.put(OslcConstants.PATH_SERVICE_PROVIDER,         ServiceProvider.class);
-            RESOURCE_SHAPE_PATH_TO_RESOURCE_CLASS_MAP.put(OslcConstants.PATH_SERVICE_PROVIDER_CATALOG, ServiceProviderCatalog.class);
-    	} catch (ClassNotFoundException e)
-    	{
-    		e.printStackTrace();
-    		System.err.println("OSLCRMApplication failed to initialize");
-    	}
 
-        //RESOURCE_SHAPE_PATH_TO_RESOURCE_CLASS_MAP.put(Constants.PATH_CHANGE_REQUEST, BugzillaChangeRequest.class);
-        
-    }
 
-    public OSLCRMApplication()
-           throws OslcCoreApplicationException,
-                  URISyntaxException{
-        super(RESOURCE_CLASSES,
-              OslcConstants.PATH_RESOURCE_SHAPES,
-              RESOURCE_SHAPE_PATH_TO_RESOURCE_CLASS_MAP);
-    }
+			RESOURCE_SHAPE_PATH_TO_RESOURCE_CLASS_MAP.put(OslcConstants.PATH_ALLOWED_VALUES,           AllowedValues.class);
+			RESOURCE_SHAPE_PATH_TO_RESOURCE_CLASS_MAP.put(OslcConstants.PATH_COMPACT,                  Compact.class);
+			RESOURCE_SHAPE_PATH_TO_RESOURCE_CLASS_MAP.put(OslcConstants.PATH_CREATION_FACTORY,         CreationFactory.class);
+			RESOURCE_SHAPE_PATH_TO_RESOURCE_CLASS_MAP.put(OslcConstants.PATH_DIALOG,                   Dialog.class);
+			RESOURCE_SHAPE_PATH_TO_RESOURCE_CLASS_MAP.put(OslcConstants.PATH_ERROR,                    Error.class);
+			RESOURCE_SHAPE_PATH_TO_RESOURCE_CLASS_MAP.put(OslcConstants.PATH_EXTENDED_ERROR,           ExtendedError.class);
+			RESOURCE_SHAPE_PATH_TO_RESOURCE_CLASS_MAP.put(OslcConstants.PATH_OAUTH_CONFIGURATION,      OAuthConfiguration.class);
+			RESOURCE_SHAPE_PATH_TO_RESOURCE_CLASS_MAP.put(OslcConstants.PATH_PREFIX_DEFINITION,        PrefixDefinition.class);
+			RESOURCE_SHAPE_PATH_TO_RESOURCE_CLASS_MAP.put(OslcConstants.PATH_PREVIEW,                  Preview.class);
+			RESOURCE_SHAPE_PATH_TO_RESOURCE_CLASS_MAP.put(OslcConstants.PATH_PROPERTY,                 Property.class);
+			RESOURCE_SHAPE_PATH_TO_RESOURCE_CLASS_MAP.put(OslcConstants.PATH_PUBLISHER,                Publisher.class);
+			RESOURCE_SHAPE_PATH_TO_RESOURCE_CLASS_MAP.put(OslcConstants.PATH_QUERY_CAPABILITY,         QueryCapability.class);
+			RESOURCE_SHAPE_PATH_TO_RESOURCE_CLASS_MAP.put(OslcConstants.PATH_RESOURCE_SHAPE,           ResourceShape.class);
+			RESOURCE_SHAPE_PATH_TO_RESOURCE_CLASS_MAP.put(OslcConstants.PATH_SERVICE,                  Service.class);
+			RESOURCE_SHAPE_PATH_TO_RESOURCE_CLASS_MAP.put(OslcConstants.PATH_SERVICE_PROVIDER,         ServiceProvider.class);
+			RESOURCE_SHAPE_PATH_TO_RESOURCE_CLASS_MAP.put(OslcConstants.PATH_SERVICE_PROVIDER_CATALOG, ServiceProviderCatalog.class);
+		} catch (ClassNotFoundException e)
+		{
+			e.printStackTrace();
+			System.err.println("OSLCRMApplication failed to initialize");
+		}
+
+		//RESOURCE_SHAPE_PATH_TO_RESOURCE_CLASS_MAP.put(Constants.PATH_CHANGE_REQUEST, BugzillaChangeRequest.class);
+
+	}
+
+
+
+
+	@Override
+	public Set<Object> getSingletons() {
+		Set<Object> s = new HashSet<Object>();
+
+		// Register the Jackson provider for JSON
+
+		// Make (de)serializer use a subset of JAXB and (afterwards) Jackson annotations
+		// See http://wiki.fasterxml.com/JacksonJAXBAnnotations for more information
+		ObjectMapper mapper = new ObjectMapper();
+		AnnotationIntrospector primary = new JaxbAnnotationIntrospector();
+		AnnotationIntrospector secondary = new JacksonAnnotationIntrospector();
+		AnnotationIntrospector pair = new AnnotationIntrospector.Pair(primary, secondary);
+		mapper.getDeserializationConfig().setAnnotationIntrospector(pair);
+		mapper.getSerializationConfig().setAnnotationIntrospector(pair);
+
+		// Set up the provider
+		JacksonJaxbJsonProvider jaxbProvider = new JacksonJaxbJsonProvider();
+		jaxbProvider.setMapper(mapper);
+
+		s.add(jaxbProvider);
+		return s;
+	}
+
+
+
+
+	public OSLCRMApplication()
+			throws OslcCoreApplicationException,
+			URISyntaxException{
+		super(RESOURCE_CLASSES,
+				OslcConstants.PATH_RESOURCE_SHAPES,
+				RESOURCE_SHAPE_PATH_TO_RESOURCE_CLASS_MAP);
+	}
 }

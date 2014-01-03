@@ -21,7 +21,8 @@ public class GraphServiceRest {
 	}
 				
 	@GET
-	@Produces({"text/plain", "application/xml", "application/json"})
+	//@Produces({"text/plain", "application/xml", "application/json"})
+	@Produces({"application/json"})
 	public GraphTO draw(@QueryParam("uri") String uri ){
 		return this.appServ.createGraph(uri);	
 	}

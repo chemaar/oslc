@@ -13,7 +13,7 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "graph", propOrder = {
     "name",
     "label",
-    "size",
+    //"size",
     "children"
 })
 public class GraphTO {
@@ -21,7 +21,7 @@ public class GraphTO {
 	
 	String name;
 	String label;
-	int size;
+	//int size;
 	
 	List<GraphTO> children;
 	
@@ -31,12 +31,12 @@ public class GraphTO {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public int getSize() {
-		return size;
-	}
-	public void setSize(int size) {
-		this.size = size;
-	}
+//	public int getSize() {
+//		return size;
+//	}
+//	public void setSize(int size) {
+//		this.size = size;
+//	}
 	public List<GraphTO> getChildren() {
 		if(this.children==null){
 			this.children = new LinkedList<GraphTO>();
@@ -54,7 +54,7 @@ public class GraphTO {
 	}
 	@Override
 	public String toString() {
-		return "GraphTO [name=" + name + ", label=" + label + ", size=" + size
+		return "GraphTO [name=" + name + ", label=" + label + ", size=" + 0
 				+ ", children=" + children + "]";
 	}
 	
