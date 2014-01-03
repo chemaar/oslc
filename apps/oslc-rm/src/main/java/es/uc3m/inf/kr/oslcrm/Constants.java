@@ -26,7 +26,7 @@ public interface Constants{
     public static String KM_LEVEL                =     KM_NAMESPACE+"level";
     public static String KM_TYPE_SYSTEM                =     KM_NAMESPACE+"System";
     public static String KM_TYPE_COMPONENT              =     KM_NAMESPACE+"Component";
-    public static String KM_TYPE_VOCABULARY_ELEMENT              =     KM_NAMESPACE+"VocabularyElement";
+    public static String KM_TYPE_VOCABULARY_ELEMENT              =     KM_NAMESPACE+"KnowledgeElement";
     
     /*FOAF Properties*/
     public static String FOAF_NAMESPACE                = "http://xmlns.com/foaf/0.1/";

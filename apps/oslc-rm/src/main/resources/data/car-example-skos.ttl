@@ -16,7 +16,7 @@
 @prefix km-people:      <http://threusecompany/km/people/> .
 @prefix km-org:      <http://threusecompany/km/organization/> .
 @prefix km-demo:      <http://threusecompany/km/demo/> .
-@prefix km-demo-ontology:      <http://threusecompany/km/demo/ontology> .
+@prefix km-demo-ontology:      <http://threusecompany/km/demo/ontology/> .
 @prefix km-demo2:      <http://threusecompany/km/demo2/> .
 
 #Domain specific Definitions

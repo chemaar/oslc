@@ -1,5 +1,8 @@
 package es.uc3m.inf.kr.common.to;
 
+import java.net.URI;
+import java.net.URISyntaxException;
+
 import org.eclipse.lyo.oslc4j.core.annotation.OslcDescription;
 import org.eclipse.lyo.oslc4j.core.annotation.OslcName;
 import org.eclipse.lyo.oslc4j.core.annotation.OslcNamespace;
@@ -19,30 +22,18 @@ import org.eclipse.lyo.oslc4j.core.model.ValueType;
 import es.uc3m.inf.kr.oslcrm.Constants;
 
 @OslcNamespace(Constants.KNOWLEDGE_MANAGEMENT_DOMAIN)
-@OslcName("KnowledgeManagement") 
+@OslcName("KnowledgeElement") 
 @OslcResourceShape(title = "Knowledge management Resource Shape", describes = Constants.KM_TYPE_VOCABULARY_ELEMENT)
 public class ResourceTO extends AbstractResource{
 
-        private String uri = "";
-        private String label = "";
+        private String label = "FIXME";
         private String description = "";
         private String type = "";
         
 
         @OslcDescription("A default Linked Data Label")
 	    @OslcName("label")
-	    @OslcPropertyDefinition(Constants.KM_NAMESPACE + "uri")
-	    @OslcRepresentation(Representation.Inline)
-	    @OslcValueType(ValueType.String)
-	    @OslcTitle("uri")
-        public String getUri() {
-                return uri;
-        }
-        public void setUri(String uri) {
-                this.uri = uri;
-        }
-        @OslcDescription("A default Linked Data Label")
-	    @OslcName("label")
+        @OslcOccurs(Occurs.ZeroOrOne)
 	    @OslcPropertyDefinition(OslcConstants.RDFS_NAMESPACE + "label")
 	    @OslcRepresentation(Representation.Inline)
 	    @OslcValueType(ValueType.String)
@@ -66,12 +57,13 @@ public class ResourceTO extends AbstractResource{
         public void setDescription(String description) {
                 this.description = description;
         }
-        @OslcDescription("The Element type.")
-    	@OslcOccurs(Occurs.ExactlyOne)
-    	@OslcPropertyDefinition(OslcConstants.RDF_NAMESPACE+"type")
-    	@OslcRepresentation(Representation.Inline)
-    	@OslcValueType(ValueType.Resource)
-    	@OslcTitle("type")
+//        @OslcDescription("The Element type.")
+//    	@OslcOccurs(Occurs.ZeroOrOne)
+//    	@OslcPropertyDefinition(Constants.DCTERMS_SUBJECT)
+//    	@OslcRepresentation(Representation.Inline)
+//    	@OslcValueType(ValueType.String)
+//        @OslcRange("xsd:string")
+//    	@OslcTitle("type")
         public String getType() {
                 return type;
         }
@@ -82,12 +74,24 @@ public class ResourceTO extends AbstractResource{
                 super();
                 // TODO Auto-generated constructor stub
         }
+        
+        public void setUri(String uri){
+        	try {
+				this.setAbout(new URI(uri));
+			} catch (URISyntaxException e) {
+				throw new RuntimeException(e);
+			}
+        }
+        
+        public String getUri(){
+        	return this.getAbout().toASCIIString();
+        }
         public ResourceTO(String uri) {
-        	this.uri = uri;
+        	setUri(uri);
 		}
 		@Override
         public String toString() {
-                return "ResourceTO [uri=" + uri + ", label=" + label + ", description="
+                return "ResourceTO [uri=" + this.getAbout().toASCIIString() + ", label=" + label + ", description="
                                 + description + ", type=" + type + "]";
         }
         @Override
@@ -98,7 +102,7 @@ public class ResourceTO extends AbstractResource{
                                 + ((description == null) ? 0 : description.hashCode());
                 result = prime * result + ((label == null) ? 0 : label.hashCode());
                 result = prime * result + ((type == null) ? 0 : type.hashCode());
-                result = prime * result + ((uri == null) ? 0 : uri.hashCode());
+                result = prime * result + ((this.getAbout().toASCIIString() == null) ? 0 : this.getAbout().toASCIIString().hashCode());
                 return result;
         }
         @Override
@@ -125,10 +129,10 @@ public class ResourceTO extends AbstractResource{
                                 return false;
                 } else if (!type.equals(other.type))
                         return false;
-                if (uri == null) {
-                        if (other.uri != null)
+                if (this.getAbout().toASCIIString() == null) {
+                        if (other.getAbout().toASCIIString() != null)
                                 return false;
-                } else if (!uri.equals(other.uri))
+                } else if (!this.getAbout().toASCIIString().equals(other.getAbout().toASCIIString()))
                         return false;
                 return true;
         }

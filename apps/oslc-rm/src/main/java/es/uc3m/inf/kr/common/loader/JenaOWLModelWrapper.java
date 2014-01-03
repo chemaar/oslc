@@ -10,6 +10,8 @@ import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.ontology.OntModelSpec;
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
+import com.hp.hpl.jena.reasoner.rulesys.OWLMicroReasoner;
+import com.hp.hpl.jena.reasoner.rulesys.OWLMicroReasonerFactory;
 
 import es.uc3m.inf.kr.common.exceptions.KRModelException;
 import es.uc3m.inf.kr.common.exceptions.ResourceNotFoundException;
@@ -72,6 +74,7 @@ public class JenaOWLModelWrapper implements KRModelWrapper{
         dm.setProcessImports(false);
         OntModelSpec spec = new OntModelSpec( OntModelSpec.OWL_MEM);
         spec.setDocumentManager(dm);
+        spec.setReasoner(new OWLMicroReasoner(OWLMicroReasonerFactory.theInstance()));
         OntModel ontModel = ModelFactory.createOntologyModel(spec, null );
         owlsources = owlSource.getKnowledgeResources();
         logger.debug("Loading " + owlsources.length  +" resources into the model");
