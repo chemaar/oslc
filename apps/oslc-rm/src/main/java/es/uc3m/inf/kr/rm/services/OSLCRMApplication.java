@@ -25,6 +25,7 @@ import java.util.Set;
 
 
 
+
 import org.eclipse.lyo.oslc4j.application.OslcWinkApplication;
 import org.eclipse.lyo.oslc4j.core.exception.OslcCoreApplicationException;
 import org.eclipse.lyo.oslc4j.core.model.AllowedValues;
@@ -46,6 +47,8 @@ import org.eclipse.lyo.oslc4j.core.model.ServiceProvider;
 import org.eclipse.lyo.oslc4j.core.model.ServiceProviderCatalog;
 import org.eclipse.lyo.oslc4j.provider.jena.JenaProvidersRegistry;
 import org.eclipse.lyo.oslc4j.provider.json4j.Json4JProvidersRegistry;
+
+import es.uc3m.inf.kr.rm.services.rest.GraphServiceRest;
 
 public class OSLCRMApplication extends OslcWinkApplication {
 
@@ -74,6 +77,8 @@ public class OSLCRMApplication extends OslcWinkApplication {
             RESOURCE_CLASSES.add(KRVocabularyManagementService.class);
             RESOURCE_CLASSES.add(RequirementManagementService.class);
             RESOURCE_CLASSES.add(KnowledgeManagementService.class);
+            RESOURCE_CLASSES.add(GraphServiceRest.class);
+            
             
 
 

@@ -8,6 +8,7 @@ import org.apache.log4j.Logger;
 import es.uc3m.inf.kr.common.to.ModelTO;
 import es.uc3m.inf.kr.common.to.OntologyDataTO;
 import es.uc3m.inf.kr.common.to.ResourceTO;
+import es.uc3m.inf.kr.pscs.to.GraphTO;
 
 
 public class KnowledgeManagementAppServ {
@@ -144,5 +145,10 @@ public class KnowledgeManagementAppServ {
 				ResourceTO property) {
 			return this.facade.valueOf(resource, property);
            }
+		
+		public GraphTO createGraph(String uri){
+			return this.facade.createGraph(uri);
+		}
+		
 
 }

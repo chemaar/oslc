@@ -31,8 +31,11 @@ import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.ontology.OntProperty;
 import com.hp.hpl.jena.ontology.OntResource;
 import com.hp.hpl.jena.ontology.Ontology;
+import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.rdf.model.Property;
+import com.hp.hpl.jena.rdf.model.RDFNode;
+import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.rdf.model.Statement;
 import com.hp.hpl.jena.rdf.model.StmtIterator;
 import com.hp.hpl.jena.util.iterator.ExtendedIterator;
@@ -48,7 +51,9 @@ import es.uc3m.inf.kr.common.loader.resources.URLFilesResourceLoader;
 import es.uc3m.inf.kr.common.to.ModelTO;
 import es.uc3m.inf.kr.common.to.OntologyDataTO;
 import es.uc3m.inf.kr.common.to.ResourceTO;
+import es.uc3m.inf.kr.common.utils.SparQLUtils;
 import es.uc3m.inf.kr.km.dao.KnowledgeManagementDAO;
+import es.uc3m.inf.kr.pscs.to.GraphTO;
 
 public class KnowledgeManagementFacade{
 
@@ -329,5 +334,31 @@ public class KnowledgeManagementFacade{
 		}
 		return null;
 				
+	}
+
+
+
+	public GraphTO createGraph(String uri) {
+		String queryStr = "DESCRIBE <"+uri+">";
+		Model result = SparQLUtils.executeDescribe(this.model.getBaseModel(), queryStr);
+		Resource resource = result.getResource(uri);
+		StmtIterator iter = resource.listProperties();
+		GraphTO graph = new GraphTO();
+		graph.setName(resource.getURI());
+		while(iter.hasNext()){
+			Statement stmt = iter.nextStatement();
+			GraphTO child = new GraphTO();
+			child.setLabel(stmt.getPredicate().getURI());
+			RDFNode object = stmt.getObject();
+			if(object.isLiteral()){
+				child.setName(object.asLiteral().getString()+(!object.asLiteral().getLanguage().equalsIgnoreCase("")?"@"+object.asLiteral().getLanguage():""));
+			}else if (object.isResource()){
+				child.getChildren().add(this.createGraph(object.asResource().getURI()));
+			}else if (object.isURIResource()){
+				
+			}
+			graph.getChildren().add(child);
+		}
+		return graph;
 	}
 }

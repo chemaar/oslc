@@ -24,7 +24,18 @@ public class KnowledgeManagementFacadeTest {
 		KnowledgeManagementDAO dao = new FileKnowledgeManagementDAOImpl(rdfModel);
 		KnowledgeManagementFacade facade = new KnowledgeManagementFacade(dao);
 
-
 	}
 
+	@Test
+	public void testCreateGraph() throws FileNotFoundException {
+		ResourceLoader loader = new FilesResourceLoader(new String[]{"data/car-example-skos.ttl"});
+		JenaOWLModelWrapper rdfModel = new JenaOWLModelWrapper(loader,"TURTLE");
+		KnowledgeManagementDAO dao = new FileKnowledgeManagementDAOImpl(rdfModel);
+		KnowledgeManagementFacade facade = new KnowledgeManagementFacade(dao);
+		String uri= "http://threusecompany/km/demo/1381307095/car";
+		System.out.println(facade.createGraph(uri));
+	}
+
+	
+	
 }
