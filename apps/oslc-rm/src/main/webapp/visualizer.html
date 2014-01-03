@@ -47,13 +47,20 @@ var link = svg.selectAll(".link"),
 d3.json("graph.json", function(error, json) {
   root = json;
   update();
+
 });
 
-
+ function toggleAll(d) {
+    if (d.children) {
+      d.children.forEach(toggleAll);
+      click(d);
+    }
+  }
 
 function update() {
   var nodes = flatten(root),
       links = d3.layout.tree().links(nodes);
+
 
   // Restart the force layout.
   force
@@ -88,6 +95,8 @@ function update() {
 
   node.select("circle")
       .style("fill", color);
+      
+  
 }
 
 function tick() {
