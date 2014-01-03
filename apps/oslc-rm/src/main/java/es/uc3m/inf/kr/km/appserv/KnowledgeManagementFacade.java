@@ -4,6 +4,7 @@ package es.uc3m.inf.kr.km.appserv;
 import java.io.IOException;
 import java.io.StringWriter;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.Date;
 import java.util.Enumeration;
 import java.util.HashSet;
@@ -31,6 +32,9 @@ import com.hp.hpl.jena.ontology.OntProperty;
 import com.hp.hpl.jena.ontology.OntResource;
 import com.hp.hpl.jena.ontology.Ontology;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
+import com.hp.hpl.jena.rdf.model.Property;
+import com.hp.hpl.jena.rdf.model.Statement;
+import com.hp.hpl.jena.rdf.model.StmtIterator;
 import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 import com.hp.hpl.jena.vocabulary.DC;
 import com.hp.hpl.jena.vocabulary.OWL;
@@ -184,8 +188,33 @@ public class KnowledgeManagementFacade{
 	}
 
 	public List<ResourceTO> listPropertiesOf(ResourceTO clazz){
-		return createListOfResources(this.model.getOntClass(clazz.getUri()).listDeclaredProperties(true));
+		if(this.model.getOntClass(clazz.getUri())!=null){
+			return createListOfResources(this.model.getOntClass(clazz.getUri()).listDeclaredProperties(true));	
+		}else if(this.model.getIndividual(clazz.getUri())!=null){
+			return createListOfResources(this.model.getIndividual(clazz.getUri()).listProperties());
+		}
+			
+		return Collections.emptyList();
 	}
+
+
+	private List<ResourceTO> createListOfResources(StmtIterator it) {
+		List<ResourceTO> resources = new LinkedList<ResourceTO>();              
+		while(it.hasNext()){
+			ResourceTO createResourceTO = createResourceTO(it.next());
+			if(createResourceTO!=null)
+				resources.add(createResourceTO);
+		}
+		return resources;
+	}
+
+
+
+	private ResourceTO createResourceTO(Statement next) {
+		ResourceTO resource = new ResourceTO(next.getPredicate().getURI());
+		return resource;
+	}
+
 
 
 	public boolean addClass(ResourceTO clazz, ResourceTO parent){
@@ -277,7 +306,6 @@ public class KnowledgeManagementFacade{
 	private static ResourceTO createResourceTO(OntResource ontResource){
 		if(ontResource != null && !filteredNamespaces.contains(ontResource.getNameSpace())){
 			ResourceTO resource = new ResourceTO();
-			resource.setUri(OWL.Nothing.getURI());
 			resource.setUri(ontResource.getURI());
 			resource.setLabel(ontResource.getLabel("en")==null?"":ontResource.getLabel("en"));
 			resource.setDescription(ontResource.getComment("en")==null?"":ontResource.getComment("en"));
@@ -286,5 +314,20 @@ public class KnowledgeManagementFacade{
 
 		}
 		return null;
+	}
+
+
+
+	public ResourceTO valueOf(ResourceTO resource, ResourceTO property) {
+		OntResource ontResource = this.model.getOntResource(resource.getUri());
+		Property ontProperty = this.model.getProperty(property.getUri());
+		if(ontResource!=null && ontProperty != null){
+			ResourceTO resourceTO = new ResourceTO(resource.getUri());//FIXME:
+			resourceTO.setLabel(ontResource.getProperty(ontProperty).getString());
+			resourceTO.setDescription(property.getUri());
+			return resourceTO;
+		}
+		return null;
+				
 	}
 }

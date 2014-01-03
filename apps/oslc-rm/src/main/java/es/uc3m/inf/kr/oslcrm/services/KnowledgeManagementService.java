@@ -119,12 +119,26 @@ public class KnowledgeManagementService {
 	}
 	
 	
+	
 	@GET
 	@Path("listPropertiesOf")
 	@Produces({OslcMediaType.APPLICATION_RDF_XML, OslcMediaType.APPLICATION_XML, OslcMediaType.APPLICATION_JSON})
 	public List<ResourceTO> listPropertiesOf(@QueryParam("uri") String uri) throws IOException, ServletException {
 		try {
 			return this.appServ.listPropertiesOf(new ResourceTO(uri));
+		} catch (RuntimeException e) {
+			 throw new WebApplicationException(Response.Status.INTERNAL_SERVER_ERROR);
+		}
+
+	}
+	
+	@GET
+	@Path("valueOf")
+	@Produces({OslcMediaType.APPLICATION_RDF_XML, OslcMediaType.APPLICATION_XML, OslcMediaType.APPLICATION_JSON})
+	public ResourceTO valueOf(@QueryParam("uri") String uri, @QueryParam("property") String property) throws IOException, ServletException {
+		try {
+			ResourceTO valueOf = this.appServ.valueOf(new ResourceTO(uri),new ResourceTO(property));
+			return valueOf;
 		} catch (RuntimeException e) {
 			 throw new WebApplicationException(Response.Status.INTERNAL_SERVER_ERROR);
 		}

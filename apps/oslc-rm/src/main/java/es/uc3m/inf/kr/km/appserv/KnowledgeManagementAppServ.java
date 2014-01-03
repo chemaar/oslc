@@ -140,4 +140,9 @@ public class KnowledgeManagementAppServ {
                 return this.facade.getInstance(instance);
         }
 
+		public ResourceTO valueOf(ResourceTO resource,
+				ResourceTO property) {
+			return this.facade.valueOf(resource, property);
+           }
+
 }

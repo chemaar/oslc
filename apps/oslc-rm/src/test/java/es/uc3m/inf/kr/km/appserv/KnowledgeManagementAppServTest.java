@@ -13,11 +13,13 @@ public class KnowledgeManagementAppServTest {
 	public void test() {
 		KnowledgeManagementAppServ appServ = (KnowledgeManagementAppServ) ApplicationContextLocator.
 				getApplicationContext().getBean(KnowledgeManagementAppServ.class.getSimpleName());
-		assertEquals(66, appServ.listClasses().size());
-		assertEquals(75, appServ.listProperties().size());
-		assertEquals(140, appServ.listInstances().size());
+		assertEquals(5, appServ.listClasses().size());
+		assertEquals(6, appServ.listProperties().size());
+		assertEquals(9, appServ.listInstances().size());
 		assertEquals(1, appServ.listInstancesOf(new ResourceTO("http://threusecompany/km/demo/System")).size());
-		
+		String resource = "http://threusecompany/km/demo/1381307095/car/subsystem/braking/pedal";
+		String property = "http://www.w3.org/2004/02/skos/core#prefLabel";
+		System.out.println(appServ.valueOf(new ResourceTO(resource), new ResourceTO(property)));
 	}
 
 }

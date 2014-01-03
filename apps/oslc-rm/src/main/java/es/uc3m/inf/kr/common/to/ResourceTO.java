@@ -26,7 +26,7 @@ import es.uc3m.inf.kr.oslcrm.Constants;
 @OslcResourceShape(title = "Knowledge management Resource Shape", describes = Constants.KM_TYPE_VOCABULARY_ELEMENT)
 public class ResourceTO extends AbstractResource{
 
-        private String label = "FIXME";
+        private String label = "";
         private String description = "";
         private String type = "";
         
