@@ -1,4 +1,4 @@
-package es.uc3m.inf.kr.oslcrm.services;
+package es.uc3m.inf.kr.rm.services;
 
 import java.io.IOException;
 import java.net.URI;
@@ -35,9 +35,9 @@ import org.eclipse.lyo.oslc4j.core.model.OslcMediaType;
 
 import es.uc3m.inf.kr.common.utils.ApplicationContextLocator;
 import es.uc3m.inf.kr.km.dao.VocabularyDAO;
-import es.uc3m.inf.kr.oslcrm.Constants;
-import es.uc3m.inf.kr.oslcrm.to.Person;
-import es.uc3m.inf.kr.oslcrm.to.VocabularyTO;
+import es.uc3m.inf.kr.rm.Constants;
+import es.uc3m.inf.kr.rm.to.Person;
+import es.uc3m.inf.kr.rm.to.VocabularyTO;
 
 @OslcService(Constants.VOCABULARY_MANAGEMENT_DOMAIN)
 @Path("vm")

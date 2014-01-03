@@ -1,4 +1,4 @@
-package es.uc3m.inf.kr.oslcrm.services;
+package es.uc3m.inf.kr.rm.services;
 
 import java.io.IOException;
 import java.net.URI;
@@ -22,7 +22,7 @@ import org.eclipse.lyo.oslc4j.core.model.OslcConstants;
 import org.eclipse.lyo.oslc4j.core.model.OslcMediaType;
 import org.eclipse.lyo.oslc4j.core.model.ServiceProviderCatalog;
 
-import es.uc3m.inf.kr.oslcrm.Constants;
+import es.uc3m.inf.kr.rm.Constants;
 
 @OslcService(OslcConstants.OSLC_CORE_DOMAIN)
 @Path("catalog")

@@ -12,7 +12,7 @@ import com.hp.hpl.jena.rdf.model.Model;
 import es.uc3m.inf.kr.common.loader.JenaRDFModelWrapper;
 import es.uc3m.inf.kr.common.loader.resources.FilesResourceLoader;
 import es.uc3m.inf.kr.common.loader.resources.ResourceLoader;
-import es.uc3m.inf.kr.oslcrm.to.VocabularyTO;
+import es.uc3m.inf.kr.rm.to.VocabularyTO;
 
 public class CPVSPARQLDAOLocalImpl implements VocabularyDAO {
 

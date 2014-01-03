@@ -1,9 +1,6 @@
-package es.uc3m.inf.kr.oslcrm;
+package es.uc3m.inf.kr.rm;
 
-import org.eclipse.lyo.oslc4j.core.OSLC4JConstants;
 import org.eclipse.lyo.oslc4j.core.model.OslcConstants;
-
-import com.hp.hpl.jena.sparql.vocabulary.FOAF;
 
 public interface Constants{
 	public static String REQUIREMENTS_MANAGEMENT_DOMAIN                    = "http://open-services.net/ns/rm#";

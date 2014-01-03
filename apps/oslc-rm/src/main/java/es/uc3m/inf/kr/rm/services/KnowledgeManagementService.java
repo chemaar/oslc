@@ -1,4 +1,4 @@
-package es.uc3m.inf.kr.oslcrm.services;
+package es.uc3m.inf.kr.rm.services;
 
 import java.io.IOException;
 import java.util.LinkedList;
@@ -26,7 +26,7 @@ import org.eclipse.lyo.oslc4j.core.model.OslcMediaType;
 import es.uc3m.inf.kr.common.to.ResourceTO;
 import es.uc3m.inf.kr.common.utils.ApplicationContextLocator;
 import es.uc3m.inf.kr.km.appserv.KnowledgeManagementAppServ;
-import es.uc3m.inf.kr.oslcrm.Constants;
+import es.uc3m.inf.kr.rm.Constants;
 
 @OslcService(Constants.VOCABULARY_MANAGEMENT_DOMAIN)
 @Path("km")

@@ -1,4 +1,4 @@
-package es.uc3m.inf.kr.oslcrm.services;
+package es.uc3m.inf.kr.rm.services;
 
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -12,8 +12,8 @@ import org.eclipse.lyo.oslc4j.core.model.Publisher;
 import org.eclipse.lyo.oslc4j.core.model.ServiceProvider;
 import org.eclipse.lyo.oslc4j.core.model.ServiceProviderFactory;
 
-import es.uc3m.inf.kr.oslcrm.Constants;
-import es.uc3m.inf.kr.oslcrm.SKOS;
+import es.uc3m.inf.kr.rm.Constants;
+import es.uc3m.inf.kr.rm.SKOS;
 
 public class OSLCRMServiceProviderFactory{
     private static Class<?>[] RESOURCE_CLASSES =  {

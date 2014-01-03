@@ -19,9 +19,9 @@ import es.uc3m.inf.kr.common.loader.JenaRDFModelWrapper;
 import es.uc3m.inf.kr.common.loader.KRModelWrapper;
 import es.uc3m.inf.kr.common.loader.resources.FilesResourceLoader;
 import es.uc3m.inf.kr.common.loader.resources.ResourceLoader;
-import es.uc3m.inf.kr.oslcrm.SKOS;
-import es.uc3m.inf.kr.oslcrm.to.Person;
-import es.uc3m.inf.kr.oslcrm.to.VocabularyTO;
+import es.uc3m.inf.kr.rm.SKOS;
+import es.uc3m.inf.kr.rm.to.Person;
+import es.uc3m.inf.kr.rm.to.VocabularyTO;
 
 public class CPV2008FileDAOImpl implements VocabularyDAO{
 

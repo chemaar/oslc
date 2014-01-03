@@ -1,8 +1,9 @@
-package es.uc3m.inf.kr.oslcrm.to;
+package es.uc3m.inf.kr.rm.to;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
 
 
 
@@ -28,8 +29,8 @@ import org.eclipse.lyo.oslc4j.core.model.OslcConstants;
 import org.eclipse.lyo.oslc4j.core.model.Representation;
 import org.eclipse.lyo.oslc4j.core.model.ValueType;
 
-import es.uc3m.inf.kr.oslcrm.Constants;
-import es.uc3m.inf.kr.oslcrm.SKOS;
+import es.uc3m.inf.kr.rm.Constants;
+import es.uc3m.inf.kr.rm.SKOS;
 
 @OslcNamespace(Constants.REQUIREMENTS_MANAGEMENT_NAMESPACE)
 @OslcName("VocabularyManagement") 

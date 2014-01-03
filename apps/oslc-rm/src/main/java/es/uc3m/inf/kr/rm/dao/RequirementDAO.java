@@ -1,8 +1,8 @@
-package es.uc3m.inf.kr.oslcrm.dao;
+package es.uc3m.inf.kr.rm.dao;
 
 import java.util.List;
 
-import es.uc3m.inf.kr.oslcrm.to.RequirementTO;
+import es.uc3m.inf.kr.rm.to.RequirementTO;
 
 public interface RequirementDAO {
 

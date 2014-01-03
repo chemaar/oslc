@@ -1,10 +1,10 @@
-package es.uc3m.inf.kr.oslcrm.appserv;
+package es.uc3m.inf.kr.rm.appserv;
 
 import java.util.List;
 
-import es.uc3m.inf.kr.oslcrm.dao.DummyRequirementDAOImpl;
-import es.uc3m.inf.kr.oslcrm.dao.RequirementDAO;
-import es.uc3m.inf.kr.oslcrm.to.RequirementTO;
+import es.uc3m.inf.kr.rm.dao.DummyRequirementDAOImpl;
+import es.uc3m.inf.kr.rm.dao.RequirementDAO;
+import es.uc3m.inf.kr.rm.to.RequirementTO;
 
 public class RequirementApplicationService {
 	

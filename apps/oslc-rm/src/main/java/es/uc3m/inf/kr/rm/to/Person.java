@@ -14,7 +14,7 @@
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
 
-package es.uc3m.inf.kr.oslcrm.to;
+package es.uc3m.inf.kr.rm.to;
 
 import java.net.URI;
 
@@ -28,7 +28,7 @@ import org.eclipse.lyo.oslc4j.core.model.AbstractResource;
 
 import com.hp.hpl.jena.sparql.vocabulary.FOAF;
 
-import es.uc3m.inf.kr.oslcrm.Constants;
+import es.uc3m.inf.kr.rm.Constants;
 
 
 

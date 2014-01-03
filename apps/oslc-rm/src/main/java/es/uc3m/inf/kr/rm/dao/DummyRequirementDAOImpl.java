@@ -1,4 +1,4 @@
-package es.uc3m.inf.kr.oslcrm.dao;
+package es.uc3m.inf.kr.rm.dao;
 
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -8,8 +8,8 @@ import java.util.List;
 
 import org.eclipse.lyo.oslc4j.core.model.AbstractResource;
 
-import es.uc3m.inf.kr.oslcrm.to.Person;
-import es.uc3m.inf.kr.oslcrm.to.RequirementTO;
+import es.uc3m.inf.kr.rm.to.Person;
+import es.uc3m.inf.kr.rm.to.RequirementTO;
 
 public class DummyRequirementDAOImpl implements RequirementDAO{
 	List<RequirementTO> requirements;

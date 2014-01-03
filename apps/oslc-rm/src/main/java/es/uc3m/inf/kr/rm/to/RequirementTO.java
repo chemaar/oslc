@@ -1,4 +1,4 @@
-package es.uc3m.inf.kr.oslcrm.to;
+package es.uc3m.inf.kr.rm.to;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -20,7 +20,7 @@ import org.eclipse.lyo.oslc4j.core.model.Occurs;
 import org.eclipse.lyo.oslc4j.core.model.Representation;
 import org.eclipse.lyo.oslc4j.core.model.ValueType;
 
-import es.uc3m.inf.kr.oslcrm.Constants;
+import es.uc3m.inf.kr.rm.Constants;
 
 @OslcNamespace(Constants.REQUIREMENTS_MANAGEMENT_NAMESPACE)
 @OslcName("Requirement") 

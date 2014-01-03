@@ -1,4 +1,4 @@
-package es.uc3m.inf.kr.oslcrm;
+package es.uc3m.inf.kr.rm;
 
 public class SKOS {
 	

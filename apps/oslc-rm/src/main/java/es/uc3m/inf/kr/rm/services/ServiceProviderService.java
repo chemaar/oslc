@@ -11,7 +11,7 @@
  *
  * Contributors:
  *******************************************************************************/
-package es.uc3m.inf.kr.oslcrm.services;
+package es.uc3m.inf.kr.rm.services;
 
 
 

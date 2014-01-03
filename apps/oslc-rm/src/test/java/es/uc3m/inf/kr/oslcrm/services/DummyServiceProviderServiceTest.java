@@ -6,6 +6,8 @@ import junit.framework.Assert;
 import org.eclipse.lyo.oslc4j.core.model.ServiceProvider;
 import org.junit.Test;
 
+import es.uc3m.inf.kr.rm.services.DummyServiceProviderService;
+
 public class DummyServiceProviderServiceTest {
 
 	@Test

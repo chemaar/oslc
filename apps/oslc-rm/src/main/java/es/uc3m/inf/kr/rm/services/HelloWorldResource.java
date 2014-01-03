@@ -1,4 +1,4 @@
-package es.uc3m.inf.kr.oslcrm.services;
+package es.uc3m.inf.kr.rm.services;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
