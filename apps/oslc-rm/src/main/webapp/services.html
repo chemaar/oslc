@@ -35,14 +35,14 @@
 
       <!-- Jumbotron -->
       <div class="jumbotron">
-        <h1>OSLC-RM demo services...</h1>
-        <p class="lead">This is the first version of some REST services implementing the specification of OSLC-RM.</a>
+        <h1>OSLC-RM and KM demo services...</h1>
+        <p class="lead">This is the first version of some REST services implementing the specification of OSLC-RM (Requirements Management) and OSLC-KM (Knowledge Management).</p>
       </div>
 
       <hr>
-	<h2>Vocabulary Management (on-going work)</h2>
-	<p>In order to implement the OSL specification with regards to Requirements Management we should 
-	be able to share the vocabulary.</p>
+	<h2>Knowledge Management (on-going work)</h2>
+	<p>In order to implement the OSLC specification with regards to Requirements Management we should 
+	be able to share and manage vocabulary and metadata of the different OSLC services.</p>
 	<p>That is why we have select a test vocabulary "The Common Procurement Vocabulary" to implement 
 	some REST services.</p>
 	<p>You can access/test these services in the following URIs:</p>
@@ -53,7 +53,13 @@
 	 <li><a href="./services/vm/cpv/37322000 ">Get a vocabulary element (37322000)</a></li>
 	 <li><a href="./services/vm/cpv ">Get the full vocabulary (not recommend more than 10K concepts)</a></li>
 	 <li><a href="./services/rm/get/1 ">Get a requirement (1)</a></li>
-	 <li><a href="./services/rm/ ">Get the full list of requirements</a></li>	
+	 <li><a href="./services/rm/ ">Get the full list of requirements</a></li>
+	 <li><a href="./services/km/listClasses">List classes or categories in an ontology</a></li>		
+	 <li><a href="./services/km/listProperties">List properties or relationships</a></li>
+	 <li><a href="./services/km/listInstances">List instances</a></li>
+	 <li><a href="./services/km/listInstancesOf?uri=http://threusecompany/km/demo/SubSystem">List instances of some category</a></li>
+	 <li><a href="./services/km/listPropertiesOf?uri=http://threusecompany/km/demo/1381307095/car/subsystem/braking/pedal">List properties of an element</a></li>
+	 <li><a href="services/km/valueOf?uri=http://threusecompany/km/demo/1381307095/car/subsystem/braking/pedal&property=http://www.w3.org/2004/02/skos/core#prefLabel">Value of a property in some element</a></li>
 	 <li>Query Capabilities (on-going)</li>
 	 <li>SPARQL interface (TO-DO)</li>
 	 <li>Auth (TO-DO)</li>
